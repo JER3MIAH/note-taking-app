@@ -1,0 +1,70 @@
+name: note_taking_app
+description: "A new Flutter project."
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.6
+  flutter_hooks: ^0.20.5
+  flutter_svg: ^2.0.10+1
+  flutter_bloc: ^8.1.6
+  equatable: ^2.0.7
+  shared_preferences: ^2.3.3
+  uuid: ^4.5.1
+  get_it: ^8.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.14.1
+  bloc_test: ^9.1.7
+  mockito: ^5.4.4
+
+# flutter_launcher_icons:
+#   android: "launcher_icon"
+#   ios: true
+#   image_path_android: "assets/images/app-icon.png"
+#   image_path_ios: "assets/images/app-icon.jpg"
+#   min_sdk_android: 21
+#   remove_alpha_ios: true
+#   windows:
+#     generate: true
+#     image_path: "assets/images/app-icon.png"
+#     icon_size: 48
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/icons/
+    - assets/images/
+
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/inter/Inter_18pt-Bold.ttf
+        - asset: assets/fonts/inter/Inter_18pt-Medium.ttf
+        - asset: assets/fonts/inter/Inter_18pt-Regular.ttf
+        - asset: assets/fonts/inter/Inter_18pt-SemiBold.ttf
+    - family: NotoSerif
+      fonts:
+        - asset: assets/fonts/noto-serif/NotoSerif-Bold.ttf
+        - asset: assets/fonts/noto-serif/NotoSerif-Medium.ttf
+        - asset: assets/fonts/noto-serif/NotoSerif-Regular.ttf
+        - asset: assets/fonts/noto-serif/NotoSerif-SemiBold.ttf
+    - family: SourceCodePro
+      fonts:
+        - asset: assets/fonts/source-code-pro/SourceCodePro-Bold.ttf
+        - asset: assets/fonts/source-code-pro/SourceCodePro-Medium.ttf
+        - asset: assets/fonts/source-code-pro/SourceCodePro-Regular.ttf
+        - asset: assets/fonts/source-code-pro/SourceCodePro-SemiBold.ttf
