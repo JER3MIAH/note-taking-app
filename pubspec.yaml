@@ -30,17 +30,18 @@ dev_dependencies:
   bloc_test: ^9.1.7
   mockito: ^5.4.4
 
-# flutter_launcher_icons:
-#   android: "launcher_icon"
-#   ios: true
-#   image_path_android: "assets/images/app-icon.png"
-#   image_path_ios: "assets/images/app-icon.jpg"
-#   min_sdk_android: 21
-#   remove_alpha_ios: true
-#   windows:
-#     generate: true
-#     image_path: "assets/images/app-icon.png"
-#     icon_size: 48
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path_android: "assets/images/app-icon.png"
+  image_path_ios: "assets/images/app-icon.jpg"
+  adaptive_icon_background: "000000"
+  min_sdk_android: 21
+  remove_alpha_ios: true
+  windows:
+    generate: true
+    image_path: "assets/images/app-icon.png"
+    icon_size: 48
 
 flutter:
   uses-material-design: true
