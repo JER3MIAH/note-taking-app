@@ -9,7 +9,7 @@ class ThemeLocalService {
 
   Future<void> saveThemePreference(AppTheme value) async {
     try {
-      await prefs.setString('theme_pref', value.toString());
+      await prefs.setString('theme_pref', value.toStringg());
     } catch (e) {
       log('save theme preference error: $e');
     }
@@ -18,12 +18,15 @@ class ThemeLocalService {
   AppTheme? getThemePreference() {
     try {
       final themePref = prefs.getString('theme_pref');
-      if (themePref != null &&
-          AppTheme.values.contains(themePref.toAppTheme())) {
-        return themePref.toAppTheme();
-      } else {
-        return null;
+      if (themePref != null) {
+        try {
+          return themePref.toAppTheme();
+        } catch (e) {
+          log('Invalid theme string: $themePref');
+          return null;
+        }
       }
+      return null;
     } catch (e) {
       log('get theme preference error: $e');
       return null;

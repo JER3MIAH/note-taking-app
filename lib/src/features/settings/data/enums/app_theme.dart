@@ -1,5 +1,11 @@
 enum AppTheme { light, dark, system }
 
+extension AppThemeString on AppTheme {
+  String toStringg() {
+    return name;
+  }
+}
+
 extension AppThemeExtension on String {
   AppTheme toAppTheme() {
     switch (this) {

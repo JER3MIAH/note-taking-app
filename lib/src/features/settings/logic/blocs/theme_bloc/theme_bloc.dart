@@ -8,8 +8,9 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
     required this.localService,
   }) : super(const ThemeState()) {
     on<GetSavedThemePrefs>((event, emit) async {
+      final appTheme = localService.getThemePreference();
       emit(state.copyWith(
-        appTheme: localService.getThemePreference(),
+        appTheme: appTheme,
       ));
     });
 
