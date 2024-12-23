@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note_taking_app/src/features/theme/data/enums/enums.dart';
 import 'features/home/data/bloc_providers.dart';
 import 'features/home/presentation/screens/home_screen.dart';
 import 'features/navigation/nav.dart';
@@ -22,7 +23,15 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Note Taking App',
-            theme: state.isDarkMode ? darkTheme : lightTheme,
+            theme: lightTheme,
+            darkTheme: darkTheme,
+            themeMode: switch (state.appTheme) {
+              AppTheme.dark => ThemeMode.dark,
+              AppTheme.light => ThemeMode.light,
+              AppTheme.system => ThemeMode.system,
+            },
+            themeAnimationCurve: Curves.easeInCirc,
+            themeAnimationDuration: Duration(milliseconds: 500),
             routes: {
               AppRoutes.home: (context) => HomeScreen(),
             },

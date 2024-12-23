@@ -1,21 +1,22 @@
 import 'package:equatable/equatable.dart';
+import 'package:note_taking_app/src/features/theme/data/enums/enums.dart';
 export 'theme_bloc.dart';
 export 'theme_event.dart';
 
 class ThemeState extends Equatable {
-  final bool isDarkMode;
+  final AppTheme appTheme;
   const ThemeState({
-    this.isDarkMode = false,
+    this.appTheme = AppTheme.system,
   });
 
   @override
-  List<Object?> get props => [isDarkMode];
+  List<Object> get props => [appTheme];
 
   ThemeState copyWith({
-    bool? isDarkMode,
+    AppTheme? appTheme,
   }) {
     return ThemeState(
-      isDarkMode: isDarkMode ?? this.isDarkMode,
+      appTheme: appTheme ?? this.appTheme,
     );
   }
 }
