@@ -2,12 +2,17 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:note_taking_app/src/features/settings/data/enums/app_font.dart';
 import 'package:note_taking_app/src/features/settings/logic/blocs/font_bloc/font_state.dart';
+import 'package:note_taking_app/src/features/settings/logic/services/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   late FontBloc fontBloc;
+  late SharedPreferences prefs;
 
-  setUp(() {
-    fontBloc = FontBloc();
+  setUp(() async {
+    SharedPreferences.setMockInitialValues({});
+    prefs = await SharedPreferences.getInstance();
+    fontBloc = FontBloc(localService: FontLocalService(prefs: prefs));
   });
 
   tearDown(() {

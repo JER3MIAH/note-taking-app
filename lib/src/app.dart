@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:note_taking_app/src/features/settings/data/enums/app_font.dart';
 import 'package:note_taking_app/src/features/settings/logic/blocs/font_bloc/font_state.dart';
 import 'package:note_taking_app/src/features/settings/data/enums/enums.dart';
 import 'package:note_taking_app/src/shared/shared.dart';

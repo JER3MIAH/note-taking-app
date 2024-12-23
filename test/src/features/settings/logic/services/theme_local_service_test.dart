@@ -18,7 +18,7 @@ void main() {
       await themeLocalService.saveThemePreference(AppTheme.dark);
       expect(
         prefs.getString('theme_pref'),
-        AppTheme.dark.toString(),
+        AppTheme.dark.toStringg(),
       );
     });
 

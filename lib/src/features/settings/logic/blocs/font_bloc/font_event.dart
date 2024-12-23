@@ -8,6 +8,10 @@ abstract class FontEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class GetSavedFontPrefs extends FontEvent {
+  const GetSavedFontPrefs();
+}
+
 class ChangeFont extends FontEvent {
   final AppFont font;
   const ChangeFont({
