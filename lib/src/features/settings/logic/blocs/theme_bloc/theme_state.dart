@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:note_taking_app/src/features/theme/data/enums/enums.dart';
+import 'package:note_taking_app/src/features/settings/data/enums/enums.dart';
 export 'theme_bloc.dart';
 export 'theme_event.dart';
 
