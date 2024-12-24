@@ -106,8 +106,7 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
 
     localService.editNote(unArchivedNote);
     emit(state.copyWith(
-      selectedNote:
-          unArchivedNote.id == state.selectedNote?.id ? unArchivedNote : null,
+      selectedNote: event.id == state.selectedNote?.id ? unArchivedNote : null,
       notes: updateNotes,
     ));
   }
@@ -123,12 +122,12 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
     );
 
     final updatedNotes = state.notes
-        .map((note) => note.id == noteToEdit.id ? updatedNote : note)
+        .map((note) => note.id == event.id ? updatedNote : note)
         .toList();
 
     localService.editNote(updatedNote);
     emit(state.copyWith(
-      selectedNote: noteToEdit.id == state.selectedNote?.id ? noteToEdit : null,
+      selectedNote: event.id == state.selectedNote?.id ? updatedNote : null,
       notes: updatedNotes,
     ));
 
@@ -142,8 +141,14 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
         state.notes.where((note) => note.id != noteToDelete.id).toList();
 
     localService.removeNote(noteToDelete.id);
+
+    final newSelectedNote = state.selectedNote?.id == noteToDelete.id
+        ? (updatedNotes.isNotEmpty ? updatedNotes.first : null)
+        : state.selectedNote;
+
     emit(state.copyWith(
-      resetSelectedNote: noteToDelete.id == state.selectedNote?.id,
+      selectedNote: newSelectedNote,
+      resetSelectedNote: newSelectedNote == null,
       notes: updatedNotes,
     ));
 

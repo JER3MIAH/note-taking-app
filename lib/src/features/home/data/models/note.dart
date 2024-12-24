@@ -81,7 +81,7 @@ class Note {
 
   @override
   String toString() {
-    return 'Note(id: $id,/ncreatedAt: $createdAt,/nupdatedAt: $updatedAt,/ntitle: $title,/ntags: $tags,/nnote: $note,/nisArchived: $isArchived)';
+    return 'Note(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, title: $title, tags: $tags, note: $note, isArchived: $isArchived)';
   }
 
   @override
