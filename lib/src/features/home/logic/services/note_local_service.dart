@@ -32,7 +32,6 @@ class NoteLocalService {
     }
   }
 
-  void selectNote() async {}
 
   void changeSelectedNote(Note? note) async {
     try {

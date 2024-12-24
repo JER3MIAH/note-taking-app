@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 
 class Note {
   final String id;
@@ -19,14 +20,14 @@ class Note {
     this.isArchived = false,
   });
 
-  // Note.empty()
-  //     : id = '',
-  //       createdAt = DateTime.now(),
-  //       updatedAt = null,
-  //       title = '',
-  //       tags = [],
-  //       note = '',
-  //       isArchived = false;
+  Note.testValues()
+      : id = 'id',
+        createdAt = DateTime.now(),
+        updatedAt = null,
+        title = 'title',
+        tags = ['tag1', 'tag2'],
+        note = 'note',
+        isArchived = false;
 
   Note copyWith({
     String? id,
@@ -81,5 +82,29 @@ class Note {
   @override
   String toString() {
     return 'Note(id: $id,/ncreatedAt: $createdAt,/nupdatedAt: $updatedAt,/ntitle: $title,/ntags: $tags,/nnote: $note,/nisArchived: $isArchived)';
+  }
+
+  @override
+  bool operator ==(covariant Note other) {
+    if (identical(this, other)) return true;
+
+    return other.id == id &&
+        other.createdAt == createdAt &&
+        other.updatedAt == updatedAt &&
+        other.title == title &&
+        listEquals(other.tags, tags) &&
+        other.note == note &&
+        other.isArchived == isArchived;
+  }
+
+  @override
+  int get hashCode {
+    return id.hashCode ^
+        createdAt.hashCode ^
+        updatedAt.hashCode ^
+        title.hashCode ^
+        tags.hashCode ^
+        note.hashCode ^
+        isArchived.hashCode;
   }
 }

@@ -50,7 +50,7 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
 
   void _selectNote(SelectNote event, Emitter<NoteState> emit) {
     final note = _getNoteFromId(event.id);
-    localService.selectNote();
+    localService.changeSelectedNote(note);
     emit(state.copyWith(
       selectedNote: note,
     ));
@@ -70,6 +70,9 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
       note: event.note,
     );
     localService.addNote(newNote);
+    if (state.notes.isEmpty) {
+      localService.changeSelectedNote(newNote);
+    }
     emit(state.copyWith(
       selectedNote: state.notes.isEmpty ? newNote : null,
       notes: [newNote, ...state.notes],
