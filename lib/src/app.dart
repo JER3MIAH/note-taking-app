@@ -5,7 +5,6 @@ import 'package:note_taking_app/src/shared/shared.dart';
 import 'features/home/data/bloc_providers.dart';
 import 'features/home/presentation/screens/home_screen.dart';
 import 'features/settings/data/bloc_providers.dart';
-import 'features/settings/data/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'features/settings/logic/blocs/theme_bloc/theme_state.dart';
 

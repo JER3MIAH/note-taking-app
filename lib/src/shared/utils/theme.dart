@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:note_taking_app/src/features/settings/data/colors.dart';
+import 'package:note_taking_app/src/shared/utils/colors.dart';
 
 final lightTheme = ThemeData(
   useMaterial3: true,
