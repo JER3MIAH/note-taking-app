@@ -3,6 +3,7 @@ import 'package:note_taking_app/src/features/home/data/models/note.dart';
 import 'package:note_taking_app/src/features/home/logic/blocs/note_bloc/note_event.dart';
 import 'package:note_taking_app/src/features/home/logic/blocs/note_bloc/note_state.dart';
 import 'package:note_taking_app/src/features/home/logic/blocs/tag_bloc/tag_bloc.dart';
+import 'package:note_taking_app/src/features/home/logic/blocs/tag_bloc/tag_event.dart';
 import 'package:note_taking_app/src/features/home/logic/services/note_local_service.dart';
 import 'package:note_taking_app/src/shared/shared.dart';
 
@@ -73,6 +74,7 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
       selectedNote: state.notes.isEmpty ? newNote : null,
       notes: [newNote, ...state.notes],
     ));
+    _addTags(event.tags);
   }
 
   void _archiveNote(ArchiveNote event, Emitter<NoteState> emit) {
@@ -126,6 +128,9 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
       selectedNote: noteToEdit.id == state.selectedNote?.id ? noteToEdit : null,
       notes: updatedNotes,
     ));
+
+    _addTags(event.tags);
+    _removeTags();
   }
 
   void _deleteNote(DeleteNote event, Emitter<NoteState> emit) {
@@ -138,5 +143,36 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
       resetSelectedNote: noteToDelete.id == state.selectedNote?.id,
       notes: updatedNotes,
     ));
+
+    _removeTags();
+  }
+
+//*-------------------------------------------------------------
+  void _addTags(List<String> tags) {
+    final allTags = tagBloc.state.tags;
+    List<String> newTags = [];
+    for (var tag in tags) {
+      if (!allTags.contains(tag)) {
+        newTags.add(tag);
+      }
+    }
+    tagBloc.add(AddTags(tags: newTags));
+  }
+
+  /// Remove unused tags
+  void _removeTags() {
+    final allTags = tagBloc.state.tags;
+    List<String> tagsToDelete = [];
+
+    bool noNoteHasThisTag(String tag) {
+      return state.notes.every((note) => !(note.tags.contains(tag)));
+    }
+
+    for (var tag in allTags) {
+      if (noNoteHasThisTag(tag)) {
+        tagsToDelete.add(tag);
+      }
+    }
+    tagBloc.add(DeleteTags(tags: tagsToDelete));
   }
 }
