@@ -13,10 +13,11 @@ class TagState extends Equatable {
 
   TagState copyWith({
     String? selectedTag,
+    bool resetSelectedTag = false,
     List<String>? tags,
   }) {
     return TagState(
-      selectedTag: selectedTag ?? this.selectedTag,
+      selectedTag: resetSelectedTag ? null : selectedTag ?? this.selectedTag,
       tags: tags ?? this.tags,
     );
   }

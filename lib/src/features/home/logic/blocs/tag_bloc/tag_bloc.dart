@@ -10,8 +10,24 @@ class TagBloc extends Bloc<TagEvent, TagState> {
     on<DeleteTags>(_deleteTags);
   }
 
-  void _selectTag(SelectTag event, Emitter<TagState> emit) {}
-  void _resetSelectedTags(ResetSelectedTag event, Emitter<TagState> emit) {}
-  void _addTags(AddTags event, Emitter<TagState> emit) {}
-  void _deleteTags(DeleteTags event, Emitter<TagState> emit) {}
+  void _selectTag(SelectTag event, Emitter<TagState> emit) {
+    emit(state.copyWith(
+      selectedTag: event.tag,
+    ));
+  }
+
+  void _resetSelectedTags(ResetSelectedTag event, Emitter<TagState> emit) {
+    emit(state.copyWith(resetSelectedTag: true));
+  }
+
+  void _addTags(AddTags event, Emitter<TagState> emit) {
+    final updatedTags = {...state.tags, ...event.tags}.toList();
+    emit(state.copyWith(tags: updatedTags));
+  }
+
+  void _deleteTags(DeleteTags event, Emitter<TagState> emit) {
+    final updatedTags =
+        state.tags.where((tag) => !event.tags.contains(tag)).toList();
+    emit(state.copyWith(tags: updatedTags));
+  }
 }
