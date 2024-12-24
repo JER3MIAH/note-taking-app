@@ -14,10 +14,12 @@ class NoteState extends Equatable {
 
   NoteState copyWith({
     Note? selectedNote,
+    bool resetSelectedNote = false,
     List<Note>? notes,
   }) {
     return NoteState(
-      selectedNote: selectedNote ?? this.selectedNote,
+      selectedNote:
+          resetSelectedNote ? null : selectedNote ?? this.selectedNote,
       notes: notes ?? this.notes,
     );
   }
