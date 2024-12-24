@@ -11,6 +11,10 @@ class GetSelectedTag extends TagEvent {
   const GetSelectedTag();
 }
 
+class GetTags extends TagEvent {
+  const GetTags();
+}
+
 class SelectTag extends TagEvent {
   final String tag;
 

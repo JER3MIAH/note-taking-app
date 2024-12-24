@@ -9,6 +9,7 @@ class TagBloc extends Bloc<TagEvent, TagState> {
     required this.localService,
   }) : super(TagState()) {
     on<GetSelectedTag>(_getSelectedTag);
+    on<GetTags>(_getTags);
     on<SelectTag>(_selectTag);
     on<ResetSelectedTag>(_resetSelectedTag);
     on<AddTags>(_addTags);
@@ -19,6 +20,13 @@ class TagBloc extends Bloc<TagEvent, TagState> {
     final selectedTag = await localService.getSelectedTag();
     emit(state.copyWith(
       selectedTag: selectedTag,
+    ));
+  }
+
+  void _getTags(GetTags event, Emitter<TagState> emit) async {
+    final tags = await localService.getTags();
+    emit(state.copyWith(
+      tags: tags,
     ));
   }
 

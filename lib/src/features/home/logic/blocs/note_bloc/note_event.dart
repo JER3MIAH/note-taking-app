@@ -7,6 +7,14 @@ abstract class NoteEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class GetSelectedNote extends NoteEvent {
+  const GetSelectedNote();
+}
+
+class GetNotes extends NoteEvent {
+  const GetNotes();
+}
+
 class SelectNote extends NoteEvent {
   final String id;
   const SelectNote({

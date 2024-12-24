@@ -13,6 +13,8 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
     required this.localService,
     required this.tagBloc,
   }) : super(NoteState()) {
+    on<GetSelectedNote>(_getSelectedNote);
+    on<GetNotes>(_getNotes);
     on<SelectNote>(_selectNote);
     on<ResetSelectedNote>(_resetSelectedNote);
     on<AddNote>(_addNote);
@@ -31,14 +33,30 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
     );
   }
 
+  void _getSelectedNote(GetSelectedNote event, Emitter<NoteState> emit) async {
+    final note = await localService.getSelectedNote();
+    emit(state.copyWith(
+      selectedNote: note,
+    ));
+  }
+
+  void _getNotes(GetNotes event, Emitter<NoteState> emit) async {
+    final notes = await localService.getNotes();
+    emit(state.copyWith(
+      notes: notes,
+    ));
+  }
+
   void _selectNote(SelectNote event, Emitter<NoteState> emit) {
     final note = _getNoteFromId(event.id);
+    localService.selectNote();
     emit(state.copyWith(
       selectedNote: note,
     ));
   }
 
   void _resetSelectedNote(ResetSelectedNote event, Emitter<NoteState> emit) {
+    localService.changeSelectedNote(null);
     emit(state.copyWith(resetSelectedNote: true));
   }
 
@@ -50,6 +68,7 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
       tags: event.tags,
       note: event.note,
     );
+    localService.addNote(newNote);
     emit(state.copyWith(
       selectedNote: state.notes.isEmpty ? newNote : null,
       notes: [newNote, ...state.notes],
@@ -64,6 +83,7 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
         .map((note) => note.id == archivedNote.id ? archivedNote : note)
         .toList();
 
+    localService.editNote(archivedNote);
     emit(state.copyWith(
       selectedNote:
           archivedNote.id == state.selectedNote?.id ? archivedNote : null,
@@ -79,6 +99,7 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
         .map((note) => note.id == unArchivedNote.id ? unArchivedNote : note)
         .toList();
 
+    localService.editNote(unArchivedNote);
     emit(state.copyWith(
       selectedNote:
           unArchivedNote.id == state.selectedNote?.id ? unArchivedNote : null,
@@ -100,6 +121,7 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
         .map((note) => note.id == noteToEdit.id ? updatedNote : note)
         .toList();
 
+    localService.editNote(updatedNote);
     emit(state.copyWith(
       selectedNote: noteToEdit.id == state.selectedNote?.id ? noteToEdit : null,
       notes: updatedNotes,
@@ -111,6 +133,7 @@ class NoteBloc extends Bloc<NoteEvent, NoteState> {
     final updatedNotes =
         state.notes.where((note) => note.id != noteToDelete.id).toList();
 
+    localService.removeNote(noteToDelete.id);
     emit(state.copyWith(
       resetSelectedNote: noteToDelete.id == state.selectedNote?.id,
       notes: updatedNotes,

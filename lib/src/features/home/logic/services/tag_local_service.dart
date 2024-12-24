@@ -8,9 +8,9 @@ class TagLocalService {
 
   Future<List<String>> getTags() async {
     try {
-      List<String>? jsonList = prefs.getStringList('tag_list');
-      if (jsonList == null) return [];
-      return jsonList;
+      List<String>? tagList = prefs.getStringList('tag_list');
+      if (tagList == null) return [];
+      return tagList;
     } catch (e, stack) {
       log('Error getting tags: $e at $stack');
       return [];
@@ -19,9 +19,9 @@ class TagLocalService {
 
   Future<String?> getSelectedTag() async {
     try {
-      String? json = prefs.getString('selected_tag');
-      if (json == null) return null;
-      return json;
+      String? tag = prefs.getString('selected_tag');
+      if (tag == null) return null;
+      return tag;
     } catch (e, stack) {
       log('Error getting selected tag: $e at $stack');
       return null;
