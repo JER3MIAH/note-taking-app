@@ -2,10 +2,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_taking_app/src/features/home/data/models/note.dart';
 import 'package:note_taking_app/src/features/home/logic/blocs/note_bloc/note_event.dart';
 import 'package:note_taking_app/src/features/home/logic/blocs/note_bloc/note_state.dart';
+import 'package:note_taking_app/src/features/home/logic/blocs/tag_bloc/tag_bloc.dart';
+import 'package:note_taking_app/src/features/home/logic/services/note_local_service.dart';
 import 'package:note_taking_app/src/shared/shared.dart';
 
 class NoteBloc extends Bloc<NoteEvent, NoteState> {
-  NoteBloc() : super(NoteState()) {
+  final NoteLocalService localService;
+  final TagBloc tagBloc;
+  NoteBloc({
+    required this.localService,
+    required this.tagBloc,
+  }) : super(NoteState()) {
     on<SelectNote>(_selectNote);
     on<ResetSelectedNote>(_resetSelectedNote);
     on<AddNote>(_addNote);
