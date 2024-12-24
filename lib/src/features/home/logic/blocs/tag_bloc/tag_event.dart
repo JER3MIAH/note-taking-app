@@ -7,6 +7,10 @@ abstract class TagEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class GetSelectedTag extends TagEvent {
+  const GetSelectedTag();
+}
+
 class SelectTag extends TagEvent {
   final String tag;
 
