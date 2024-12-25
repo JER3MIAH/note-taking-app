@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 var appColors = AppColors();
 
 class AppColors {
-  final black = Color(0xFFFFFFFF);
-  final white = Color(0xFF000000);
+  final white = Color(0xFFFFFFFF);
+  final black = Color(0xFF0E121B);
   final neutral50 = Color(0xFFF5F7FA);
   final neutral100 = Color(0xFFF3F5F8);
   final neutral200 = Color(0xFFE0E4EA);

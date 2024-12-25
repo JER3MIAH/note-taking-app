@@ -1,58 +1,35 @@
-const String baseSvgPath = 'assets/svgs/';
-const String basePngPath = 'assets/pngs/';
-const String baseJsonPath = 'assets/json/';
+const String iconPath = 'assets/icons/';
+
+final String iconArchive = 'icon-archive'.svg;
+final String iconArrowLeft = 'icon-arrow-left'.svg;
+final String iconCheckMark = 'icon-checkmark'.svg;
+final String iconChevronRight = 'icon-chevron-right'.svg;
+final String iconClock = 'icon-clock'.svg;
+final String iconCross = 'icon-cross'.svg;
+final String iconDelete = 'icon-delete'.svg;
+final String iconFontMonoSpace = 'icon-font-monospace'.svg;
+final String iconFontSansSerif = 'icon-font-sans-serif'.svg;
+final String iconFontSerif = 'icon-font-serif'.svg;
+final String iconFont = 'icon-font'.svg;
+final String iconGoogle = 'icon-google'.svg;
+final String iconHidePassword = 'icon-hide-password'.svg;
+final String iconShowPassword = 'icon-show-password'.svg;
+final String iconHome = 'icon-home'.svg;
+final String iconInfo = 'icon-info'.svg;
+final String iconLock = 'icon-lock'.svg;
+final String iconLogout = 'icon-logout'.svg;
+final String iconMenu = 'icon-menu'.svg;
+final String iconMoon = 'icon-moon'.svg;
+final String iconPlus = 'icon-plus'.svg;
+final String iconRestore = 'icon-restore'.svg;
+final String iconSearch = 'icon-search'.svg;
+final String iconSettings = 'icon-settings'.svg;
+final String iconStatus = 'icon-status'.svg;
+final String iconSun = 'icon-sun'.svg;
+final String iconSystemTheme = 'icon-system-theme'.svg;
+final String iconTag = 'icon-tag'.svg;
+final String logo = 'logo'.svg;
 
 extension ImageExtension on String {
-  // png paths
-  String get png => '$basePngPath$this.png';
-  // svgs path
-  String get svg => '$baseSvgPath$this.svg';
-  // jsons path
-  String get json => '$baseJsonPath$this.json';
+  String get svg => '$iconPath$this.svg';
 }
-
-//* pngs
-
-//* svgs
-//? Bottom nav bar icons
-final String homeOutlined = 'homeOutlined'.svg;
-final String homeFilled = 'homeFilled'.svg;
-final String presetsOutlined = 'presetsOutlined'.svg;
-final String presetsFilled = 'presetsFilled'.svg;
-final String customOutlined = 'customOutlined'.svg;
-final String customFilled = 'customFilled'.svg;
-final String savedOutlined = 'savedOutlined'.svg;
-final String savedFilled = 'savedFilled'.svg;
-final String profileOutlined = 'profileOutlined'.svg;
-final String profileFilled = 'profileFilled'.svg;
-
-//* Home icons
-final String yellowClock = 'yellowClock'.svg;
-final String lines = 'lines'.svg;
-final String splashImg = 'splash-img'.png;
-
-//*
-final String layersIcon = 'layersIcon'.svg;
-final String skipIcon = 'skipIcon'.svg;
-final String arrowBackIcon = 'arrowBackIcon'.svg;
-final String checkIcon = 'checkIcon'.svg;
-final String playIcon = 'playIcon'.svg;
-final String cancelcon = 'cancelcon'.svg;
-final String shockedEmoji = 'shockedEmoji'.svg;
-final String checkWrapper = 'checkWrapper'.svg;
-
-//* Profile icons
-final String bellIcon = 'bellIcon'.svg;
-final String statsIcon = 'statsIcon'.svg;
-final String soundIcon = 'soundIcon'.svg;
-final String starIcon = 'starIcon'.svg;
-final String logoutIcon = 'logoutIcon'.svg;
-final String editIcon = 'editIcon'.svg;
-
-//* Preset details
-final String restTimeIcon = 'restTimeIcon'.svg;
-final String workTimeIcon = 'workTimeIcon'.svg;
-
-//* json
-final String celebration = 'celebration'.json;
-final String checkAnimation = 'checkAnimation'.json;

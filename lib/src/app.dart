@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:note_taking_app/src/features/home/presentation/screens/main_screen.dart';
 import 'package:note_taking_app/src/features/settings/logic/blocs/font_bloc/font_state.dart';
 import 'package:note_taking_app/src/features/settings/data/enums/enums.dart';
 import 'package:note_taking_app/src/shared/shared.dart';
 import 'features/home/data/bloc_providers.dart';
-import 'features/home/presentation/screens/home_screen.dart';
 import 'features/settings/data/bloc_providers.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'features/settings/logic/blocs/theme_bloc/theme_state.dart';
@@ -47,9 +47,9 @@ class MyApp extends StatelessWidget {
               themeAnimationCurve: Curves.easeInCirc,
               themeAnimationDuration: Duration(milliseconds: 500),
               routes: {
-                AppRoutes.home: (context) => HomeScreen(),
+                AppRoutes.main: (context) => MainScreen(),
               },
-              initialRoute: AppRoutes.home,
+              initialRoute: AppRoutes.main,
             );
           });
         },
