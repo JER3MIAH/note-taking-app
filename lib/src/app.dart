@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:note_taking_app/src/features/home/presentation/screens/main_screen.dart';
+import 'package:note_taking_app/src/features/home/presentation/screens/screens.dart';
 import 'package:note_taking_app/src/features/settings/logic/blocs/font_bloc/font_state.dart';
 import 'package:note_taking_app/src/features/settings/data/enums/enums.dart';
 import 'package:note_taking_app/src/shared/shared.dart';
@@ -47,7 +47,9 @@ class MyApp extends StatelessWidget {
               themeAnimationCurve: Curves.easeInCirc,
               themeAnimationDuration: Duration(milliseconds: 500),
               routes: {
-                AppRoutes.main: (context) => MainScreen(),
+                AppRoutes.main: (context) => DeviceType(context).isDesktop
+                    ? DesktopMainScreen()
+                    : MainScreen(),
               },
               initialRoute: AppRoutes.main,
             );

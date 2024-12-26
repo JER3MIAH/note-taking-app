@@ -6,10 +6,10 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: AppColumn(
-        children: [],
-      ),
+    return AppColumn(
+      children: [
+        AppText('Home View')
+      ],
     );
   }
 }

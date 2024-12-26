@@ -29,6 +29,7 @@ final String iconSun = 'icon-sun'.svg;
 final String iconSystemTheme = 'icon-system-theme'.svg;
 final String iconTag = 'icon-tag'.svg;
 final String logo = 'logo'.svg;
+final String logoDark = 'logo-dark'.svg;
 
 extension ImageExtension on String {
   String get svg => '$iconPath$this.svg';
