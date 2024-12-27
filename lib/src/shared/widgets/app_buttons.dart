@@ -54,3 +54,44 @@ class AppButton extends StatelessWidget {
     );
   }
 }
+
+class TextBackButton extends StatelessWidget {
+  final String title;
+  final VoidCallback? onTap;
+  const TextBackButton({
+    super.key,
+    required this.title,
+    this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context).colorScheme;
+
+    return GestureDetector(
+      onTap: onTap ?? () => AppNavigator(context).popRoute(),
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: Container(
+          color: Colors.transparent,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            spacing: 5,
+            children: [
+              SvgAsset(
+                iconArrowLeft,
+                color: theme.surfaceContainer,
+              ),
+              AppText(
+                title,
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: theme.surfaceContainer,
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
