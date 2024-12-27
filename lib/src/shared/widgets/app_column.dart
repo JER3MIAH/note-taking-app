@@ -23,7 +23,7 @@ class AppColumn extends StatelessWidget {
         physics: AlwaysScrollableScrollPhysics(),
         child: Padding(
           padding:
-              padding ?? EdgeInsets.symmetric(horizontal: 15).copyWith(top: 25),
+              padding ?? EdgeInsets.all(16),
           child: Column(
             mainAxisSize: mainAxisSize,
             mainAxisAlignment: mainAxisAlignment,

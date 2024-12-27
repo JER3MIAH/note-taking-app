@@ -5,6 +5,7 @@ import 'package:note_taking_app/src/features/home/presentation/components/compon
 import 'package:note_taking_app/src/features/home/presentation/screens/home_view.dart';
 import 'package:note_taking_app/src/features/settings/data/enums/app_theme.dart';
 import 'package:note_taking_app/src/features/settings/logic/blocs/theme_bloc/theme_state.dart';
+import 'package:note_taking_app/src/features/settings/presentation/screens/settings_view.dart';
 import 'package:note_taking_app/src/shared/shared.dart';
 
 class MainScreen extends StatelessWidget {
@@ -21,7 +22,7 @@ class MainScreen extends StatelessWidget {
       Placeholder(),
       Placeholder(),
       Placeholder(),
-      Placeholder(),
+      SettingsView(),
     ];
 
     return BlocBuilder<BottomNavBarCubit, int>(

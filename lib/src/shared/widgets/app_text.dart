@@ -39,7 +39,7 @@ class AppText extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-        color: color,
+        color: color ?? Theme.of(context).colorScheme.onSurface,
         decoration: decoration,
         decorationStyle: decorationStyle,
         fontSize: fontSize,
