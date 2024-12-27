@@ -18,6 +18,7 @@ class ColorThemeTile extends StatelessWidget {
     final theme = Theme.of(context).colorScheme;
     return ListTile(
       onTap: onTap,
+      tileColor: isSelected ? theme.primaryFixed : null,
       contentPadding: EdgeInsets.symmetric(horizontal: spacing200),
       shape: RoundedRectangleBorder(
         side: BorderSide(color: theme.inversePrimary),
