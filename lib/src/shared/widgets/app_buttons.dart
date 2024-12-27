@@ -8,18 +8,16 @@ class AppButton extends StatelessWidget {
   final double bHeight;
   final bool expanded;
   final Color? color;
-  final Color? hoverColor;
   final Color? textColor;
 
   const AppButton({
     super.key,
     required this.title,
     this.onTap,
-    this.fontSize = 13,
+    this.fontSize = 14,
     this.bHeight = 41,
     this.expanded = false,
     this.color,
-    this.hoverColor,
     this.textColor,
   });
 
@@ -32,23 +30,20 @@ class AppButton extends StatelessWidget {
         style: ButtonStyle(
           backgroundColor: WidgetStatePropertyAll(color ?? theme.primary),
           elevation: WidgetStatePropertyAll(0),
-          overlayColor: WidgetStatePropertyAll(
-            hoverColor ?? theme.primaryContainer,
-          ),
           minimumSize: WidgetStatePropertyAll(
             expanded ? Size(double.infinity, bHeight) : null,
           ),
           fixedSize: WidgetStatePropertyAll(Size.fromHeight(bHeight)),
           shape: WidgetStatePropertyAll(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(24),
+              borderRadius: BorderRadius.circular(8),
             ),
           ),
         ),
         child: AppText(
           title,
           fontSize: fontSize,
-          color: textColor ?? theme.onPrimary,
+          color: textColor ?? appColors.white,
         ),
       ),
     );

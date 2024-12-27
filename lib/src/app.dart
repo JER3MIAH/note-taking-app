@@ -46,12 +46,8 @@ class MyApp extends StatelessWidget {
               },
               themeAnimationCurve: Curves.easeInCirc,
               themeAnimationDuration: Duration(milliseconds: 500),
-              routes: {
-                AppRoutes.main: (context) => DeviceType(context).isDesktop
-                    ? DesktopMainScreen()
-                    : MainScreen(),
-              },
-              initialRoute: AppRoutes.main,
+              routes: appRoutes,
+              initialRoute: HomeRoutes.main,
             );
           });
         },

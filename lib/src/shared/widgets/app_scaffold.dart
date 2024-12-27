@@ -33,6 +33,7 @@ class AppScaffold extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: theme.inversePrimary,
         centerTitle: false,
+        automaticallyImplyLeading: false,
         title: BlocBuilder<ThemeBloc, ThemeState>(
           builder: (_, themeState) {
             return SvgAsset(switch (themeState.appTheme) {

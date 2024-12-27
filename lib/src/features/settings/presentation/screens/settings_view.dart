@@ -25,17 +25,23 @@ class SettingsView extends StatelessWidget {
             SettingTile(
               title: 'Color Theme',
               icon: iconSun,
-              onTap: () {},
+              onTap: () {
+                AppNavigator(context).pushNamed(SettingRoutes.colorTheme);
+              },
             ),
             SettingTile(
               title: 'Font Theme',
               icon: iconFont,
-              onTap: () {},
+              onTap: () {
+                AppNavigator(context).pushNamed(SettingRoutes.fontTheme);
+              },
             ),
             SettingTile(
               title: 'Change Password',
               icon: iconLock,
-              onTap: () {},
+              onTap: () {
+                AppNavigator(context).pushNamed(SettingRoutes.changePassword);
+              },
             ),
             Container(
               color: theme.inversePrimary,
