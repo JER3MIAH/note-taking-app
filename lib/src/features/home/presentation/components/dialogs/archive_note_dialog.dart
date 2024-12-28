@@ -76,6 +76,7 @@ class ArchiveNoteDialog extends StatelessWidget {
                 bHeight: 41,
                 title: 'Cancel',
                 color: theme.secondaryContainer,
+                textColor: theme.onSurface,
                 onTap: () {
                   AppNavigator(context).popDialog();
                 },

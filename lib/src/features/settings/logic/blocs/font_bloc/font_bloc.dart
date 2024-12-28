@@ -15,6 +15,7 @@ class FontBloc extends Bloc<FontEvent, FontState> {
     });
 
     on<ChangeFont>((event, emit) {
+      localService.saveFontPreference(event.font);
       emit(state.copyWith(appFont: event.font));
     });
   }

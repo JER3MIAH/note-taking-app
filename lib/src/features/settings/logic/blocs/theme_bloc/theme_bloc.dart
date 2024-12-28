@@ -15,6 +15,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
     });
 
     on<ChangeTheme>((event, emit) {
+      localService.saveThemePreference(event.theme);
       emit(state.copyWith(appTheme: event.theme));
     });
   }

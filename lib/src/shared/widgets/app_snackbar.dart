@@ -7,14 +7,16 @@ class AppSnackbar {
     required String title,
     Duration duration = const Duration(seconds: 4),
   }) {
+    final theme = Theme.of(context).colorScheme;
+
     final snackBar = SnackBar(
-      backgroundColor: appColors.white,
+      backgroundColor: theme.surfaceContainerHigh,
       behavior: SnackBarBehavior.floating,
       padding: EdgeInsets.all(spacing100),
       elevation: 4,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(spacing100),
-        side: BorderSide(color: appColors.neutral200),
+        side: BorderSide(color: theme.inversePrimary),
       ),
       content: Row(
         children: [
@@ -28,12 +30,15 @@ class AppSnackbar {
               title,
               fontSize: 14,
               fontWeight: FontWeight.w400,
-              color: appColors.neutral950,
+              color: theme.onSurface,
             ),
           ),
           InkWell(
             onTap: () => ScaffoldMessenger.of(context).hideCurrentSnackBar(),
-            child: SvgAsset(iconCross),
+            child: SvgAsset(
+              iconCross,
+              color: theme.onSurfaceVariant,
+            ),
           ),
         ],
       ),
