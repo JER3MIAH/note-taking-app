@@ -34,51 +34,58 @@ class AppBottomNavBar extends HookWidget {
               ),
             ),
           ),
-          child: BottomNavigationBar(
-            currentIndex: selectedIndex,
-            onTap: setIndex,
-            enableFeedback: false,
-            backgroundColor: theme.surface,
-            type: BottomNavigationBarType.fixed,
-            selectedItemColor: theme.primary,
-            unselectedItemColor: theme.onSurfaceVariant,
-            showSelectedLabels: !isMobile,
-            showUnselectedLabels: !isMobile,
-            unselectedLabelStyle: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w400,
-              color: theme.onSurfaceVariant,
+          child: Theme(
+            data: Theme.of(context).copyWith(
+              splashFactory: NoSplash.splashFactory,
+              hoverColor: Colors.transparent,
             ),
-            selectedLabelStyle: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w400,
-              color: theme.primary,
-            ),
-            items: List.generate(
-              labelIconMap.length,
-              (index) {
-                final item = labelIconMap.entries.toList()[index];
-                return BottomNavigationBarItem(
-                  icon: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: isMobile && (selectedIndex == index)
-                          ? theme.secondary
-                          : null,
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: SvgAsset(
+            child: BottomNavigationBar(
+              currentIndex: selectedIndex,
+              onTap: setIndex,
+              enableFeedback: false,
+              backgroundColor: theme.surface,
+              type: BottomNavigationBarType.fixed,
+              selectedItemColor: theme.primary,
+              unselectedItemColor: theme.onSurfaceVariant,
+              showSelectedLabels: !isMobile,
+              showUnselectedLabels: !isMobile,
+              unselectedLabelStyle: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+                color: theme.onSurfaceVariant,
+              ),
+              selectedLabelStyle: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+                color: theme.primary,
+              ),
+              items: List.generate(
+                labelIconMap.length,
+                (index) {
+                  final item = labelIconMap.entries.toList()[index];
+                  return BottomNavigationBarItem(
+                    icon: SvgAsset(
                       item.value,
                       color: theme.onSurfaceVariant,
                     ),
-                  ),
-                  label: item.key,
-                  activeIcon: SvgAsset(
-                    item.value,
-                    color: theme.primary,
-                  ),
-                );
-              },
+                    label: item.key,
+                    activeIcon: Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 15, vertical: 4),
+                      decoration: BoxDecoration(
+                        color: isMobile && (selectedIndex == index)
+                            ? theme.secondary
+                            : null,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: SvgAsset(
+                        item.value,
+                        color: theme.primary,
+                      ),
+                    ),
+                  );
+                },
+              ),
             ),
           ),
         );
