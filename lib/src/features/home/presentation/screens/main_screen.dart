@@ -16,7 +16,7 @@ class MainScreen extends StatelessWidget {
     List<Widget> pages = const [
       HomeView(),
       Placeholder(),
-      Placeholder(),
+      ArchivedNotesView(),
       TagsView(),
       SettingsView(),
     ];
