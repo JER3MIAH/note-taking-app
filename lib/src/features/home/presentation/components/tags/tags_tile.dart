@@ -14,19 +14,29 @@ class TagsTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).colorScheme;
 
-    return ListTile(
-      onTap: onTap,
-      contentPadding: EdgeInsets.zero,
-      leading: SvgAsset(
-        iconTag,
-        color: theme.surfaceBright,
-      ),
-      title: AppText(
-        title,
-        fontSize: 14,
-        fontWeight: FontWeight.w500,
-        color: theme.surfaceBright,
-      ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        ListTile(
+          onTap: onTap,
+          minTileHeight: 40,
+          contentPadding: EdgeInsets.zero,
+          leading: SvgAsset(
+            iconTag,
+            color: theme.surfaceBright,
+          ),
+          title: AppText(
+            title,
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+            color: theme.surfaceBright,
+          ),
+        ),
+        Container(
+          height: 1,
+          color: theme.inversePrimary,
+        ),
+      ],
     );
   }
 }
