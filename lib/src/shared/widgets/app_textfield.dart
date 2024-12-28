@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note_taking_app/src/shared/shared.dart';
 
 class AppTextField extends StatelessWidget {
   final TextEditingController controller;
@@ -7,6 +8,8 @@ class AppTextField extends StatelessWidget {
   final bool multiLine;
   final VoidCallback? onTapClear;
   final String? Function(String?)? validator;
+  final String? leadingIcon;
+  final void Function(String)? onChanged;
   const AppTextField({
     super.key,
     required this.controller,
@@ -15,20 +18,21 @@ class AppTextField extends StatelessWidget {
     this.multiLine = false,
     this.onTapClear,
     this.validator,
+    this.onChanged,
+    this.leadingIcon,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).colorScheme;
     final tStyle = TextStyle(
-      fontSize: 13,
-      fontWeight: FontWeight.w500,
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
       color: theme.onSurface,
     );
     final border = OutlineInputBorder(
-      borderSide:
-          BorderSide(color: theme.inversePrimary.withValues(alpha: .25)),
-      borderRadius: BorderRadius.circular(4),
+      borderSide: BorderSide(color: theme.inverseSurface),
+      borderRadius: BorderRadius.circular(8),
     );
 
     return TextFormField(
@@ -38,11 +42,13 @@ class AppTextField extends StatelessWidget {
       keyboardType: multiLine ? TextInputType.multiline : TextInputType.text,
       maxLines: multiLine ? 8 : null,
       validator: validator,
+      onChanged: onChanged,
       decoration: InputDecoration(
+        prefixIcon: leadingIcon == null ? null : SvgAsset(leadingIcon!),
         errorStyle: const TextStyle(height: .0001),
         hintText: hintText,
         hintStyle: tStyle.copyWith(
-          color: theme.onSurface.withValues(alpha: .25),
+          color: theme.onSurfaceVariant,
         ),
         contentPadding: multiLine
             ? null
@@ -51,8 +57,8 @@ class AppTextField extends StatelessWidget {
                 horizontal: 12,
               ),
         constraints: BoxConstraints(
-          minHeight: multiLine ? 112 : 40,
-          maxHeight: multiLine ? 112 : 40,
+          minHeight: multiLine ? 112 : 44,
+          maxHeight: multiLine ? 112 : 44,
         ),
         focusedBorder: border,
         enabledBorder: border,

@@ -15,7 +15,7 @@ class MainScreen extends StatelessWidget {
 
     List<Widget> pages = const [
       HomeView(),
-      Placeholder(),
+      SearchView(),
       ArchivedNotesView(),
       TagsView(),
       SettingsView(),
@@ -26,6 +26,7 @@ class MainScreen extends StatelessWidget {
         return AppScaffold(
           backgroundColor: theme.inversePrimary,
           body: Container(
+            height: double.infinity,
             decoration: BoxDecoration(
               color: theme.surface,
               borderRadius: BorderRadius.vertical(

@@ -51,7 +51,7 @@ class TagSelectedScreen extends StatelessWidget {
               ),
               children: [
                 TextSpan(
-                  text: '”Dev”',
+                  text: '”$tag”',
                   style: TextStyle(
                     color: theme.onPrimary,
                   ),
