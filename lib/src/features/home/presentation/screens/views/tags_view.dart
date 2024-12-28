@@ -10,7 +10,7 @@ class TagsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context).colorScheme;
+    // final theme = Theme.of(context).colorScheme;
 
     return BlocBuilder<TagBloc, TagState>(
       builder: (_, state) {
@@ -24,9 +24,8 @@ class TagsView extends StatelessWidget {
             ),
             YBox(20),
             if (state.tags.isEmpty)
-              AppText(
-                'Your tags will show here',
-                color: theme.surfaceBright,
+              EmptyStateContainer(
+                text: 'Your tags will show here',
               )
             else
               Column(
