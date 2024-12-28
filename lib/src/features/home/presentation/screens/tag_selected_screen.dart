@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:note_taking_app/src/features/home/logic/blocs/note_bloc/note_bloc.dart';
+import 'package:note_taking_app/src/features/home/logic/blocs/note_bloc/note_state.dart';
+import 'package:note_taking_app/src/features/home/presentation/components/components.dart';
 import 'package:note_taking_app/src/shared/shared.dart';
 
 class TagSelectedScreen extends StatelessWidget {
@@ -62,7 +66,22 @@ class TagSelectedScreen extends StatelessWidget {
             ),
           ),
           YBox(20),
-          //TODO: Add list of notes
+          BlocBuilder<NoteBloc, NoteState>(
+            builder: (_, state) {
+              final filteredNotes =
+                  state.notes.where((note) => note.tags.contains(tag)).toList();
+
+              return Column(
+                children: List.generate(
+                  filteredNotes.length,
+                  (index) {
+                    final note = filteredNotes[index];
+                    return NoteTile(note: note);
+                  },
+                ),
+              );
+            },
+          ),
         ],
       ),
     );
