@@ -3,6 +3,7 @@ abstract class AppRoutes {}
 class HomeRoutes extends AppRoutes {
   static const main = '/';
   static const tagSelected = '/tagSelectedScreen';
+  static const createOrViewNote = '/createOrViewNoteScreen';
 }
 
 class AuthRoutes extends AppRoutes {

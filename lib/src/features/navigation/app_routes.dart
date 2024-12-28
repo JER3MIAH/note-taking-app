@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note_taking_app/src/features/home/data/data.dart';
 import 'package:note_taking_app/src/features/home/presentation/screens/screens.dart';
 import 'package:note_taking_app/src/features/settings/presentation/screens/screens.dart';
 import 'package:note_taking_app/src/shared/shared.dart';
@@ -18,6 +19,9 @@ final Map<String, Widget Function(BuildContext)> homeRoutes = {
       DeviceType(context).isDesktop ? DesktopMainScreen() : MainScreen(),
   HomeRoutes.tagSelected: (context) => TagSelectedScreen(
         tag: ModalRoute.of(context)?.settings.arguments as String,
+      ),
+  HomeRoutes.createOrViewNote: (context) => CreateOrViewNoteScreen(
+        note: ModalRoute.of(context)?.settings.arguments as Note?,
       ),
 };
 

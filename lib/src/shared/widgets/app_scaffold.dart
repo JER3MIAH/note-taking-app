@@ -44,10 +44,19 @@ class AppScaffold extends StatelessWidget {
           },
         ),
       ),
-      body: body,
+      body: Container(
+        height: double.infinity,
+        decoration: BoxDecoration(
+          color: theme.surface,
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(12),
+          ),
+        ),
+        child: body,
+      ),
       bottomNavigationBar: bottomNavigationBar,
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
-      backgroundColor: backgroundColor,
+      backgroundColor: backgroundColor ?? theme.inversePrimary,
       floatingActionButton: floatingActionButton,
       floatingActionButtonAnimator: floatingActionButtonAnimator,
       floatingActionButtonLocation: floatingActionButtonLocation,

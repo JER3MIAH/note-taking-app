@@ -39,6 +39,18 @@ class MainScreen extends StatelessWidget {
             ),
           ),
           bottomNavigationBar: AppBottomNavBar(),
+          floatingActionButton: selectedIndex != 4
+              ? FloatingActionButton(
+                  backgroundColor: theme.primary,
+                  child: SvgAsset(iconCross),
+                  onPressed: () {
+                    AppNavigator(context).pushNamed(
+                      HomeRoutes.createOrViewNote,
+                      args: null,
+                    );
+                  },
+                )
+              : null,
         );
       },
     );

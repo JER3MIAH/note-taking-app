@@ -50,6 +50,62 @@ class AppButton extends StatelessWidget {
   }
 }
 
+class AppTextButton extends StatelessWidget {
+  final String text;
+  final Color? color;
+  final VoidCallback? onTap;
+  const AppTextButton({
+    super.key,
+    required this.text,
+    this.color,
+    this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context).colorScheme;
+
+    return TextButton(
+      onPressed: onTap,
+      // style: ButtonStyle(
+      //   backgroundColor: WidgetStatePropertyAll(
+      //     (color ?? theme.surfaceBright),
+      //   ),
+      // ),
+      child: AppText(
+        text,
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: color ?? theme.surfaceBright,
+      ),
+    );
+  }
+}
+
+class AppIconButton extends StatelessWidget {
+  final String icon;
+  final VoidCallback? onTap;
+  const AppIconButton({
+    super.key,
+    required this.icon,
+    this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: Container(
+          color: Colors.transparent,
+          child: SvgAsset(icon),
+        ),
+      ),
+    );
+  }
+}
+
 class TextBackButton extends StatelessWidget {
   final String title;
   final VoidCallback? onTap;
@@ -76,6 +132,7 @@ class TextBackButton extends StatelessWidget {
               SvgAsset(
                 iconArrowLeft,
                 color: theme.surfaceContainer,
+                height: 20,
               ),
               AppText(
                 title,
