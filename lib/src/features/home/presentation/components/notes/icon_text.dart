@@ -16,22 +16,20 @@ class IconText extends StatelessWidget {
 
     return SizedBox(
       width: 140,
-      child: Expanded(
-        child: ListTile(
-          minTileHeight: 40,
-          contentPadding: EdgeInsets.zero,
-          leading: SvgAsset(
-            icon,
-            color: theme.surfaceBright,
-            height: 20,
-            width: 20,
-          ),
-          title: AppText(
-            title,
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
-            color: theme.surfaceBright,
-          ),
+      child: ListTile(
+        minTileHeight: 40,
+        contentPadding: EdgeInsets.zero,
+        leading: SvgAsset(
+          icon,
+          color: theme.surfaceBright,
+          height: 20,
+          width: 20,
+        ),
+        title: AppText(
+          title,
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+          color: theme.surfaceBright,
         ),
       ),
     );

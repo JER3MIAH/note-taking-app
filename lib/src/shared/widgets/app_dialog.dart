@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note_taking_app/src/shared/shared.dart';
 
 class AppDialog {
   static void dialog(
@@ -7,23 +8,27 @@ class AppDialog {
     Color? bgColor,
     bool dismissible = true,
   }) {
+    final theme = Theme.of(context).colorScheme;
+
     showDialog(
       context: context,
       barrierDismissible: dismissible,
       builder: (BuildContext dialogContext) {
         return StatefulBuilder(
-          builder: (BuildContext context, StateSetter setState) {
-            return Dialog(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
+            builder: (BuildContext context, StateSetter setState) {
+          return Dialog(
+            shape: RoundedRectangleBorder(
+              side: BorderSide(
+                color: theme.inversePrimary,
               ),
-              insetPadding: EdgeInsets.symmetric(horizontal: 15),
-              backgroundColor: bgColor ?? Theme.of(context).colorScheme.tertiary,
-              shadowColor: bgColor ?? Theme.of(context).colorScheme.tertiary,
-              child: content,
-            );
-          }
-        );
+              borderRadius: BorderRadius.circular(spacing150),
+            ),
+            insetPadding: EdgeInsets.symmetric(horizontal: 15),
+            backgroundColor: bgColor ?? theme.surfaceContainerHigh,
+            shadowColor: bgColor ?? theme.surfaceContainerHigh,
+            child: content,
+          );
+        });
       },
     );
   }

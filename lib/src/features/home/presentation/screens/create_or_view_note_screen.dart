@@ -40,9 +40,10 @@ class CreateOrViewNoteScreen extends HookWidget {
                     AppIconButton(
                       icon: iconDelete,
                       onTap: () {
-                        noteBloc.add(DeleteNote(id: note!.id));
-                        AppNavigator(context).popRoute();
-                        //TODO: show toast
+                        AppDialog.dialog(
+                          context,
+                          DeleteNoteDialog(note: note!),
+                        );
                       },
                     ),
                     XBox(10),
@@ -51,14 +52,13 @@ class CreateOrViewNoteScreen extends HookWidget {
                       onTap: () {
                         if (note!.isArchived) {
                           noteBloc.add(UnarchiveNote(id: note!.id));
-                          //TODO: show confirm dialog
                           AppNavigator(context).popRoute();
                           AppSnackbar.show(context, title: noteUnarchived);
                         } else {
-                          noteBloc.add(ArchiveNote(id: note!.id));
-                          //TODO: show confirm dialog
-                          AppNavigator(context).popRoute();
-                          AppSnackbar.show(context, title: noteArchived);
+                          AppDialog.dialog(
+                            context,
+                            ArchiveNoteDialog(note: note!),
+                          );
                         }
                       },
                     ),
@@ -83,13 +83,26 @@ class CreateOrViewNoteScreen extends HookWidget {
                       if (contentController.text.trim().isEmpty) {
                         return;
                       }
-                      noteBloc.add(AddNote(
-                        title: titleController.text.trim(),
-                        tags: parseTags(tagsController.text.trim()),
-                        note: contentController.text.trim(),
-                      ));
+                      if (note == null) {
+                        noteBloc.add(
+                          AddNote(
+                            title: titleController.text.trim(),
+                            tags: parseTags(tagsController.text.trim()),
+                            note: contentController.text.trim(),
+                          ),
+                        );
+                      } else {
+                        noteBloc.add(
+                          EditNote(
+                            id: note!.id,
+                            title: titleController.text.trim(),
+                            tags: parseTags(tagsController.text.trim()),
+                            note: contentController.text.trim(),
+                          ),
+                        );
+                      }
                       AppNavigator(context).popRoute();
-                      //TODO: Show toast
+                      AppSnackbar.show(context, title: noteSaved);
                     },
                   ),
                 ],
