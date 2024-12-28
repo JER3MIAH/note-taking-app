@@ -12,3 +12,13 @@ const spacing500 = 40.0;
 const spacing600 = 48.0;
 const spacing800 = 64.0;
 const spacing1000 = 80.0;
+
+//* Toast messages
+const noteSaved = 'Note saved successfully!';
+const noteUnarchived = 'Note restored to active notes.';
+const noteDeleted = 'Note permanently deleted.';
+const noteArchived = 'Note archived.';
+const settingUpdated = 'Settings updated successfully!';
+const passwordChanged = 'Password changed successfully!';
+const tagAdded = 'Tag added successfully!';
+const tagRemoved = 'Tag removed successfully!';

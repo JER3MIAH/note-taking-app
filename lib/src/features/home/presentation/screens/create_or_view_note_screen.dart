@@ -51,12 +51,14 @@ class CreateOrViewNoteScreen extends HookWidget {
                       onTap: () {
                         if (note!.isArchived) {
                           noteBloc.add(UnarchiveNote(id: note!.id));
+                          //TODO: show confirm dialog
                           AppNavigator(context).popRoute();
-                          //TODO: show toast
+                          AppSnackbar.show(context, title: noteUnarchived);
                         } else {
                           noteBloc.add(ArchiveNote(id: note!.id));
+                          //TODO: show confirm dialog
                           AppNavigator(context).popRoute();
-                          //TODO: show toast
+                          AppSnackbar.show(context, title: noteArchived);
                         }
                       },
                     ),
