@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_taking_app/src/features/home/logic/cubits/bottom_nav_bar_cubit.dart';
 import 'package:note_taking_app/src/features/home/presentation/components/components.dart';
-import 'package:note_taking_app/src/features/home/presentation/screens/home_view.dart';
 import 'package:note_taking_app/src/features/settings/presentation/screens/settings_view.dart';
 import 'package:note_taking_app/src/shared/shared.dart';
+import 'views/views.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -17,7 +17,7 @@ class MainScreen extends StatelessWidget {
       HomeView(),
       Placeholder(),
       Placeholder(),
-      Placeholder(),
+      TagsView(),
       SettingsView(),
     ];
 

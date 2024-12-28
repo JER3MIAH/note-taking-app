@@ -16,6 +16,9 @@ final Map<String, Widget Function(BuildContext)> authRoutes = {};
 final Map<String, Widget Function(BuildContext)> homeRoutes = {
   HomeRoutes.main: (context) =>
       DeviceType(context).isDesktop ? DesktopMainScreen() : MainScreen(),
+  HomeRoutes.tagSelected: (context) => TagSelectedScreen(
+        tag: ModalRoute.of(context)?.settings.arguments as String,
+      ),
 };
 
 //* Setting Routes
