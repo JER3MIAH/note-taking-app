@@ -20,6 +20,7 @@ dependencies:
   shared_preferences: ^2.3.3
   uuid: ^4.5.1
   get_it: ^8.0.2
+  intl: ^0.20.1
 
 dev_dependencies:
   flutter_test:
