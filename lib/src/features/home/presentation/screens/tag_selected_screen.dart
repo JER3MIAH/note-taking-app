@@ -76,7 +76,15 @@ class TagSelectedScreen extends StatelessWidget {
                   filteredNotes.length,
                   (index) {
                     final note = filteredNotes[index];
-                    return NoteTile(note: note);
+                    return NoteTile(
+                      note: note,
+                      onTap: () {
+                        AppNavigator(context).pushNamed(
+                          HomeRoutes.createOrViewNote,
+                          args: note,
+                        );
+                      },
+                    );
                   },
                 ),
               );

@@ -47,6 +47,12 @@ class ArchivedNotesView extends StatelessWidget {
                     final note = archivedNotes[index];
                     return NoteTile(
                       note: note,
+                      onTap: () {
+                        AppNavigator(context).pushNamed(
+                          HomeRoutes.createOrViewNote,
+                          args: note,
+                        );
+                      },
                     );
                   },
                 ),

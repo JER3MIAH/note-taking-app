@@ -3,3 +3,4 @@ export 'side_bar/side_bar.dart';
 export 'tags/tags_tile.dart';
 export 'notes/note_tile.dart';
 export 'empty_state/empty_state_container.dart';
+export 'notes/icon_text.dart';

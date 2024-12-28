@@ -35,6 +35,12 @@ class HomeView extends StatelessWidget {
                     final note = state.notes[index];
                     return NoteTile(
                       note: note,
+                      onTap: () {
+                        AppNavigator(context).pushNamed(
+                          HomeRoutes.createOrViewNote,
+                          args: note,
+                        );
+                      },
                     );
                   },
                 ),

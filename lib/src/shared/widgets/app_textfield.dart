@@ -73,3 +73,67 @@ class AppTextField extends StatelessWidget {
     );
   }
 }
+
+class PlainTextField extends StatelessWidget {
+  final TextEditingController controller;
+  final String? hintText;
+  final TextInputType? keyboardType;
+  final TextInputAction? textInputAction;
+  final bool obscureText;
+  final void Function(String)? onChanged;
+  final void Function(String)? onSubmitted;
+  final FocusNode? focusNode;
+  final bool isHeader;
+  final bool expands;
+  final int? maxlines;
+
+  const PlainTextField({
+    super.key,
+    required this.controller,
+    this.hintText,
+    this.keyboardType,
+    this.textInputAction,
+    this.obscureText = false,
+    this.onChanged,
+    this.onSubmitted,
+    this.focusNode,
+    this.isHeader = false,
+    this.expands = false,
+    this.maxlines,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context).colorScheme;
+    final tStyle = TextStyle(
+      fontSize: isHeader ? 24 : 14,
+      fontWeight: isHeader ? FontWeight.w700 : FontWeight.w400,
+      color: theme.onSurface,
+    );
+
+    return TextField(
+      style: tStyle,
+      controller: controller,
+      focusNode: focusNode,
+      keyboardType: keyboardType,
+      textInputAction: textInputAction,
+      obscureText: obscureText,
+      onChanged: onChanged,
+      maxLines: maxlines,
+      expands: expands,
+      onSubmitted: onSubmitted ??
+          (_) {
+            focusNode?.unfocus();
+          },
+      decoration: InputDecoration(
+        hintText: hintText,
+        hintMaxLines: controller.text.trim().isNotEmpty ? 1 : 3,
+        hintStyle: tStyle.copyWith(
+          color: theme.onSurfaceVariant,
+        ),
+        border: InputBorder.none,
+        isDense: true,
+      ),
+    );
+  }
+}

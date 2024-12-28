@@ -41,8 +41,12 @@ class MainScreen extends StatelessWidget {
           bottomNavigationBar: AppBottomNavBar(),
           floatingActionButton: selectedIndex != 4
               ? FloatingActionButton(
+                  shape: CircleBorder(),
                   backgroundColor: theme.primary,
-                  child: SvgAsset(iconCross),
+                  child: Icon(
+                    Icons.add,
+                    color: appColors.white,
+                  ),
                   onPressed: () {
                     AppNavigator(context).pushNamed(
                       HomeRoutes.createOrViewNote,

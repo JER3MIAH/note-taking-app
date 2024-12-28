@@ -99,7 +99,11 @@ class AppIconButton extends StatelessWidget {
         cursor: SystemMouseCursors.click,
         child: Container(
           color: Colors.transparent,
-          child: SvgAsset(icon),
+          child: SvgAsset(
+            icon,
+            height: 20,
+            color: Theme.of(context).colorScheme.surfaceBright,
+          ),
         ),
       ),
     );

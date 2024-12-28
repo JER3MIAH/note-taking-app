@@ -77,10 +77,18 @@ class SearchView extends HookWidget {
 
             return Column(
               children: List.generate(
-                filteredNotes.length,
+                searchFilter.value.isEmpty ? 0 : filteredNotes.length,
                 (index) {
                   final note = filteredNotes[index];
-                  return NoteTile(note: note);
+                  return NoteTile(
+                    note: note,
+                    onTap: () {
+                      AppNavigator(context).pushNamed(
+                        HomeRoutes.createOrViewNote,
+                        args: note,
+                      );
+                    },
+                  );
                 },
               ),
             );
