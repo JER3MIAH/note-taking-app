@@ -1,24 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:note_taking_app/src/features/home/data/data.dart';
+import 'package:note_taking_app/src/features/home/logic/cubits/side_bar_nav_cubit.dart';
 import 'package:note_taking_app/src/shared/shared.dart';
 
 class DesktopLayout extends HookWidget {
   final String topTitle;
+  final String tag;
   final Widget sideContent;
   final Widget body;
+  final TextEditingController searchController;
 
   const DesktopLayout({
     super.key,
     this.topTitle = '',
+    this.tag = '',
     required this.sideContent,
     required this.body,
+    required this.searchController,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).colorScheme;
+    final sideBarCubit = context.read<SideBarNavCubit>();
 
-    final searchController = useTextEditingController();
     final searchFilter = useState<String>('');
 
     return Expanded(
@@ -57,6 +64,25 @@ class DesktopLayout extends HookWidget {
                       ],
                     ),
                   )
+                else if (tag.isNotEmpty)
+                  Text.rich(
+                    TextSpan(
+                      text: 'Notes Tagged: ',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w700,
+                        color: theme.onSurfaceVariant,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: tag,
+                          style: TextStyle(
+                            color: theme.onPrimary,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
                 else
                   AppText(
                     topTitle,
@@ -79,6 +105,15 @@ class DesktopLayout extends HookWidget {
                     AppIconButton(
                       icon: iconSettings,
                       height: 28,
+                      onTap: () {
+                        if (sideBarCubit.state != SideBarItem.colorTheme &&
+                            sideBarCubit.state != SideBarItem.fontTheme &&
+                            sideBarCubit.state != SideBarItem.changePassword) {
+                          sideBarCubit.setSideBarItem(SideBarItem.colorTheme);
+                          searchController.clear();
+                          searchFilter.value = '';
+                        }
+                      },
                     ),
                   ],
                 ),
