@@ -21,6 +21,7 @@ class TagsView extends StatelessWidget {
               'Tags',
               fontSize: 24,
               fontWeight: FontWeight.w700,
+              color: appColors.neutral500,
             ),
             YBox(20),
             if (state.tags.isEmpty)

@@ -65,7 +65,7 @@ class DesktopSidebar extends StatelessWidget {
                   'Tags',
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
-                  color: theme.secondaryContainer,
+                  color: appColors.neutral500,
                 ),
               ),
               BlocBuilder<TagBloc, TagState>(
