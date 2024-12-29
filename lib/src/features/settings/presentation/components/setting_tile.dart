@@ -5,11 +5,13 @@ class SettingTile extends StatelessWidget {
   final String title;
   final String icon;
   final VoidCallback onTap;
+  final bool isSelected;
   const SettingTile({
     super.key,
     required this.title,
     required this.icon,
     required this.onTap,
+    this.isSelected = false,
   });
 
   @override
@@ -19,9 +21,13 @@ class SettingTile extends StatelessWidget {
       onTap: onTap,
       contentPadding: EdgeInsets.only(left: spacing100),
       minTileHeight: 36,
+      tileColor: isSelected ? theme.primaryFixed : null,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
       leading: SvgAsset(
         icon,
-        color: theme.onSurface,
+        color: isSelected ? theme.primary : theme.onSurface,
       ),
       title: AppText(
         title,

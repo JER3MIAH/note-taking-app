@@ -6,6 +6,7 @@ import 'package:note_taking_app/src/features/home/logic/blocs/tag_bloc/tag_bloc.
 import 'package:note_taking_app/src/features/home/logic/blocs/tag_bloc/tag_state.dart';
 import 'package:note_taking_app/src/features/home/logic/cubits/side_bar_nav_cubit.dart';
 import 'package:note_taking_app/src/features/home/presentation/components/components.dart';
+import 'package:note_taking_app/src/features/settings/presentation/screens/desktop_views/desktop_views.dart';
 import 'package:note_taking_app/src/shared/shared.dart';
 
 class DesktopMainScreen extends HookWidget {
@@ -41,16 +42,16 @@ class DesktopMainScreen extends HookWidget {
                       SideBarItem.allNotes => Placeholder(),
                       SideBarItem.archivedNotes => Placeholder(),
                       SideBarItem.tag => Placeholder(),
-                      SideBarItem.colorTheme => Placeholder(),
-                      SideBarItem.fontTheme => Placeholder(),
-                      SideBarItem.changePassword => Placeholder(),
+                      SideBarItem.colorTheme => SettingsDesktopSideView(),
+                      SideBarItem.fontTheme => SettingsDesktopSideView(),
+                      SideBarItem.changePassword => SettingsDesktopSideView(),
                     },
                     body: switch (selectedItem) {
                       SideBarItem.allNotes => Placeholder(),
                       SideBarItem.archivedNotes => Placeholder(),
                       SideBarItem.tag => Placeholder(),
-                      SideBarItem.colorTheme => Placeholder(),
-                      SideBarItem.fontTheme => Placeholder(),
+                      SideBarItem.colorTheme => ColorThemeDesktopView(),
+                      SideBarItem.fontTheme => FontThemeDesktopView(),
                       SideBarItem.changePassword => Placeholder(),
                     },
                   );
