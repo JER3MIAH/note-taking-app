@@ -26,7 +26,12 @@ class AppDialog {
             insetPadding: EdgeInsets.symmetric(horizontal: 15),
             backgroundColor: bgColor ?? theme.surfaceContainerHigh,
             shadowColor: bgColor ?? theme.surfaceContainerHigh,
-            child: content,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                maxWidth: 440,
+              ),
+              child: content,
+            ),
           );
         });
       },

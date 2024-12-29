@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:note_taking_app/src/features/home/data/data.dart';
+import 'package:note_taking_app/src/features/home/logic/blocs/note_bloc/note_bloc.dart';
+import 'package:note_taking_app/src/features/home/logic/blocs/note_bloc/note_event.dart';
 import 'package:note_taking_app/src/features/home/presentation/components/components.dart';
 import 'package:note_taking_app/src/shared/shared.dart';
 
@@ -14,7 +17,7 @@ class DesktopCreateOrViewNote extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).colorScheme;
-    // final noteBloc = context.read<NoteBloc>();
+    final noteBloc = context.read<NoteBloc>();
     final titleController = useTextEditingController(text: note?.title);
     final tagsController =
         useTextEditingController(text: note?.tags.join(', '));
@@ -127,21 +130,52 @@ class DesktopCreateOrViewNote extends HookWidget {
           ),
           child: Padding(
             padding: const EdgeInsets.all(spacing200),
-            child: Column(
-              spacing: 10,
-              children: [
-                AppOutlinedButton(
-                  onTap: () {},
-                  title: 'Archive Note',
-                  icon: iconArchive,
-                ),
-                AppOutlinedButton(
-                  onTap: () {},
-                  title: 'Delete Note',
-                  icon: iconDelete,
-                ),
-              ],
-            ),
+            child: note != null
+                ? Column(
+                    spacing: 10,
+                    children: [
+                      AppOutlinedButton(
+                        title:
+                            note!.isArchived ? 'Restore Note' : 'Archive Note',
+                        icon: note!.isArchived ? iconRestore : iconArchive,
+                        onTap: () {
+                          if (note!.isArchived) {
+                            noteBloc.add(UnarchiveNote(id: note!.id));
+                            AppSnackbar.show(context, title: noteUnarchived);
+                          } else {
+                            AppDialog.dialog(
+                              context,
+                              ArchiveNoteDialog(
+                                note: note!,
+                                onArchive: () {
+                                  noteBloc.add(ArchiveNote(id: note!.id));
+                                  AppSnackbar.show(context,
+                                      title: noteArchived);
+                                },
+                              ),
+                            );
+                          }
+                        },
+                      ),
+                      AppOutlinedButton(
+                        title: 'Delete Note',
+                        icon: iconDelete,
+                        onTap: () {
+                          AppDialog.dialog(
+                            context,
+                            DeleteNoteDialog(
+                              note: note!,
+                              onDelete: () {
+                                noteBloc.add(DeleteNote(id: note!.id));
+                                AppSnackbar.show(context, title: noteDeleted);
+                              },
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  )
+                : SizedBox.shrink(),
           ),
         ),
       ],

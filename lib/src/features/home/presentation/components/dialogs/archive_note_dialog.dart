@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_taking_app/src/features/home/data/data.dart';
-import 'package:note_taking_app/src/features/home/logic/blocs/note_bloc/note_bloc.dart';
-import 'package:note_taking_app/src/features/home/logic/blocs/note_bloc/note_event.dart';
 import 'package:note_taking_app/src/shared/shared.dart';
 
 class ArchiveNoteDialog extends StatelessWidget {
   final Note note;
+  final VoidCallback onArchive;
   const ArchiveNoteDialog({
     super.key,
     required this.note,
+    required this.onArchive,
   });
 
   @override
@@ -87,9 +86,7 @@ class ArchiveNoteDialog extends StatelessWidget {
                 color: theme.primary,
                 onTap: () {
                   AppNavigator(context).popDialog();
-                  context.read<NoteBloc>().add(ArchiveNote(id: note.id));
-                  AppNavigator(context).popDialog();
-                  AppSnackbar.show(context, title: noteArchived);
+                  onArchive();
                 },
               ),
             ],

@@ -10,6 +10,7 @@ class AppSnackbar {
     final theme = Theme.of(context).colorScheme;
 
     final snackBar = SnackBar(
+      width: 440,
       backgroundColor: theme.surfaceContainerHigh,
       behavior: SnackBarBehavior.floating,
       padding: EdgeInsets.all(spacing100),

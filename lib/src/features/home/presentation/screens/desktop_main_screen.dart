@@ -7,7 +7,6 @@ import 'package:note_taking_app/src/features/home/logic/blocs/note_bloc/note_sta
 import 'package:note_taking_app/src/features/home/logic/blocs/tag_bloc/tag_bloc.dart';
 import 'package:note_taking_app/src/features/home/logic/blocs/tag_bloc/tag_state.dart';
 import 'package:note_taking_app/src/features/home/logic/cubits/cubits.dart';
-import 'package:note_taking_app/src/features/home/logic/cubits/side_bar_nav_cubit.dart';
 import 'package:note_taking_app/src/features/home/presentation/components/components.dart';
 import 'package:note_taking_app/src/features/home/presentation/screens/desktop_views/desktop_views.dart';
 import 'package:note_taking_app/src/features/settings/presentation/screens/desktop_views/desktop_views.dart';

@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_taking_app/src/features/home/data/data.dart';
-import 'package:note_taking_app/src/features/home/logic/blocs/note_bloc/note_bloc.dart';
-import 'package:note_taking_app/src/features/home/logic/blocs/note_bloc/note_event.dart';
 import 'package:note_taking_app/src/shared/shared.dart';
 
 class DeleteNoteDialog extends StatelessWidget {
   final Note note;
+  final VoidCallback onDelete;
   const DeleteNoteDialog({
     super.key,
     required this.note,
+    required this.onDelete,
   });
 
   @override
@@ -87,9 +86,7 @@ class DeleteNoteDialog extends StatelessWidget {
                 color: theme.error,
                 onTap: () {
                   AppNavigator(context).popDialog();
-                  context.read<NoteBloc>().add(DeleteNote(id: note.id));
-                  AppNavigator(context).popDialog();
-                  AppSnackbar.show(context, title: noteDeleted);
+                  onDelete();
                 },
               ),
             ],

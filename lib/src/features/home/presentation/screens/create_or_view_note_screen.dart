@@ -42,7 +42,13 @@ class CreateOrViewNoteScreen extends HookWidget {
                       onTap: () {
                         AppDialog.dialog(
                           context,
-                          DeleteNoteDialog(note: note!),
+                          DeleteNoteDialog(
+                            note: note!,
+                            onDelete: () {
+                              noteBloc.add(DeleteNote(id: note!.id));
+                              AppSnackbar.show(context, title: noteDeleted);
+                            },
+                          ),
                         );
                       },
                     ),
@@ -57,7 +63,13 @@ class CreateOrViewNoteScreen extends HookWidget {
                         } else {
                           AppDialog.dialog(
                             context,
-                            ArchiveNoteDialog(note: note!),
+                            ArchiveNoteDialog(
+                              note: note!,
+                              onArchive: () {
+                                noteBloc.add(ArchiveNote(id: note!.id));
+                                AppSnackbar.show(context, title: noteArchived);
+                              },
+                            ),
                           );
                         }
                       },
