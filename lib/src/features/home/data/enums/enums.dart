@@ -1,8 +1,1 @@
-enum SideBarItem {
-  allNotes,
-  archivedNotes,
-  tag,
-  colorTheme,
-  fontTheme,
-  changePassword,
-}
+export 'side_bar_item.dart';

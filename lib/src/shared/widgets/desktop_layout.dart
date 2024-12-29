@@ -100,6 +100,11 @@ class DesktopLayout extends HookWidget {
                       hintText: 'Search by title, content, or tags…',
                       onChanged: (value) {
                         searchFilter.value = searchController.text.trim();
+                        if (value.isNotEmpty) {
+                          sideBarCubit.setSideBarItem(SideBarItem.search);
+                        } else {
+                          sideBarCubit.setSideBarItem(SideBarItem.allNotes);
+                        }
                       },
                     ),
                     AppIconButton(
