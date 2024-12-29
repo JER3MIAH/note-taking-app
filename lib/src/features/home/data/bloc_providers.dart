@@ -5,6 +5,7 @@ import 'package:note_taking_app/src/features/home/logic/blocs/note_bloc/note_eve
 import 'package:note_taking_app/src/features/home/logic/blocs/tag_bloc/tag_bloc.dart';
 import 'package:note_taking_app/src/features/home/logic/blocs/tag_bloc/tag_event.dart';
 import 'package:note_taking_app/src/features/home/logic/cubits/bottom_nav_bar_cubit.dart';
+import 'package:note_taking_app/src/features/home/logic/cubits/side_bar_nav_cubit.dart';
 
 final List<BlocProvider> homeBlocProviders = [
   BlocProvider<NoteBloc>(
@@ -19,5 +20,8 @@ final List<BlocProvider> homeBlocProviders = [
   ),
   BlocProvider<BottomNavBarCubit>(
     create: (_) => getIt<BottomNavBarCubit>(),
+  ),
+  BlocProvider<SideBarNavCubit>(
+    create: (_) => getIt<SideBarNavCubit>(),
   ),
 ];
