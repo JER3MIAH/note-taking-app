@@ -49,7 +49,7 @@ class DesktopMainScreen extends HookWidget {
                           SideBarItem.archivedNotes =>
                             DesktopArchivedNotesSideView(),
                           SideBarItem.tag => tagState.selectedTag == null
-                              ? Placeholder()
+                              ? Container()
                               : DesktopTagView(
                                   tag: tagState.selectedTag!,
                                 ),
@@ -65,13 +65,13 @@ class DesktopMainScreen extends HookWidget {
                           SideBarItem.tag ||
                           SideBarItem.search =>
                             noteState.selectedNote == null
-                                ? Placeholder()
+                                ? Container()
                                 : DesktopCreateOrViewNote(
                                     note: noteState.selectedNote,
                                   ),
                           SideBarItem.colorTheme => ColorThemeDesktopView(),
                           SideBarItem.fontTheme => FontThemeDesktopView(),
-                          SideBarItem.changePassword => Placeholder(),
+                          SideBarItem.changePassword => Container(),
                         },
                       );
                     },

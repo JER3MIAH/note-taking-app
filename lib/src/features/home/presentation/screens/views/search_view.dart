@@ -70,8 +70,10 @@ class SearchView extends HookWidget {
 
             if (filteredNotes.isEmpty && searchFilter.value.isNotEmpty) {
               return EmptyStateContainer(
-                text:
-                    'No notes match your search. Try a different keyword or create a new note.',
+                text: 'No notes match your search. Try a different keyword or ',
+                onCreateNewNote: () {
+                  //TODO:
+                },
               );
             }
 

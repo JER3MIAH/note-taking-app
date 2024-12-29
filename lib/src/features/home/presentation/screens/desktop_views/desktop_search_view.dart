@@ -50,7 +50,7 @@ class DesktopSearchSideView extends HookWidget {
                 ],
               ),
             ),
-            YBox(20),
+            YBox(6),
             BlocBuilder<NoteBloc, NoteState>(
               builder: (_, state) {
                 final filteredNotes = state.notes.where((note) {
@@ -64,7 +64,10 @@ class DesktopSearchSideView extends HookWidget {
                 if (filteredNotes.isEmpty && searchFilter.isNotEmpty) {
                   return EmptyStateContainer(
                     text:
-                        'No notes match your search. Try a different keyword or create a new note.',
+                        'No notes match your search. Try a different keyword or ',
+                    onCreateNewNote: () {
+                      //TODO:
+                    },
                   );
                 }
 

@@ -37,7 +37,10 @@ class DesktopArchivedNotesSideView extends StatelessWidget {
             if (archivedNotes.isEmpty)
               EmptyStateContainer(
                 text:
-                    'No notes have been archived yet. Move notes here for safekeeping, or create a new note.',
+                    'No notes have been archived yet. Move notes here for safekeeping, or ',
+                onCreateNewNote: () {
+                  //TODO:
+                },
               )
             else
               Column(
