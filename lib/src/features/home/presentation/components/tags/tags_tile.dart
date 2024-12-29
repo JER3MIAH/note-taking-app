@@ -4,10 +4,14 @@ import 'package:note_taking_app/src/shared/shared.dart';
 class TagsTile extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
+  final bool isDesktop;
+  final bool isSelected;
   const TagsTile({
     super.key,
     required this.title,
     required this.onTap,
+    this.isDesktop = false,
+    this.isSelected = false,
   });
 
   @override
@@ -20,10 +24,16 @@ class TagsTile extends StatelessWidget {
         ListTile(
           onTap: onTap,
           minTileHeight: 40,
-          contentPadding: EdgeInsets.zero,
+          contentPadding: isDesktop
+              ? EdgeInsets.symmetric(horizontal: 12)
+              : EdgeInsets.zero,
+          tileColor: isSelected ? theme.primaryFixed : null,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
           leading: SvgAsset(
             iconTag,
-            color: theme.surfaceBright,
+            color: isSelected ? theme.primary : theme.surfaceBright,
           ),
           title: AppText(
             title,
@@ -31,11 +41,19 @@ class TagsTile extends StatelessWidget {
             fontWeight: FontWeight.w500,
             color: theme.surfaceBright,
           ),
+          trailing: isSelected
+              ? Icon(
+                  Icons.keyboard_arrow_right,
+                  color: theme.onSurface,
+                  size: 18,
+                )
+              : null,
         ),
-        Container(
-          height: 1,
-          color: theme.inversePrimary,
-        ),
+        if (!isDesktop)
+          Container(
+            height: 1,
+            color: theme.inversePrimary,
+          ),
       ],
     );
   }

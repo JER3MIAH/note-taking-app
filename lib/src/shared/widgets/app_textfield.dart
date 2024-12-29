@@ -44,7 +44,15 @@ class AppTextField extends StatelessWidget {
       validator: validator,
       onChanged: onChanged,
       decoration: InputDecoration(
-        prefixIcon: leadingIcon == null ? null : SvgAsset(leadingIcon!),
+        prefixIcon: leadingIcon == null
+            ? null
+            : Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                child: SvgAsset(
+                  leadingIcon!,
+                  color: theme.surfaceBright,
+                ),
+              ),
         errorStyle: const TextStyle(height: .0001),
         hintText: hintText,
         hintStyle: tStyle.copyWith(
@@ -59,6 +67,7 @@ class AppTextField extends StatelessWidget {
         constraints: BoxConstraints(
           minHeight: multiLine ? 112 : 44,
           maxHeight: multiLine ? 112 : 44,
+          maxWidth: 300,
         ),
         focusedBorder: border,
         enabledBorder: border,

@@ -85,10 +85,12 @@ class AppTextButton extends StatelessWidget {
 class AppIconButton extends StatelessWidget {
   final String icon;
   final VoidCallback? onTap;
+  final double? height;
   const AppIconButton({
     super.key,
     required this.icon,
     this.onTap,
+    this.height,
   });
 
   @override
@@ -101,7 +103,7 @@ class AppIconButton extends StatelessWidget {
           color: Colors.transparent,
           child: SvgAsset(
             icon,
-            height: 20,
+            height: height ?? 20,
             color: Theme.of(context).colorScheme.surfaceBright,
           ),
         ),

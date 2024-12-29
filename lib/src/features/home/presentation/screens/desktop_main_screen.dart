@@ -12,9 +12,6 @@ class DesktopMainScreen extends StatelessWidget {
         children: [
           DesktopSidebar(),
           DesktopLayout(
-            topContent: Row(
-              children: [],
-            ),
             sideContent: Column(
               children: [],
             ),
