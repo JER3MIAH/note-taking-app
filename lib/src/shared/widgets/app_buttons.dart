@@ -112,6 +112,45 @@ class AppIconButton extends StatelessWidget {
   }
 }
 
+class AppOutlinedButton extends StatelessWidget {
+  final String title, icon;
+  final VoidCallback onTap;
+  const AppOutlinedButton({
+    super.key,
+    required this.onTap,
+    required this.title,
+    required this.icon,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context).colorScheme;
+
+    return ListTile(
+      onTap: onTap,
+      minTileHeight: 44,
+      contentPadding: EdgeInsets.symmetric(horizontal: 12),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+        side: BorderSide(
+          color: theme.inverseSurface,
+        ),
+      ),
+      leading: SvgAsset(
+        icon,
+        color: theme.surfaceBright,
+      ),
+      title: AppText(
+        title,
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
+        color: theme.surfaceBright,
+      ),
+  
+    );
+  }
+}
+
 class TextBackButton extends StatelessWidget {
   final String title;
   final VoidCallback? onTap;

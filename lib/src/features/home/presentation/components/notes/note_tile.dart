@@ -25,6 +25,7 @@ class NoteTile extends StatelessWidget {
           width: double.infinity,
           padding: EdgeInsets.all(spacing100),
           decoration: BoxDecoration(
+            color: isSelected ? theme.primaryFixed : null,
             borderRadius: isSelected ? BorderRadius.circular(spacing75) : null,
             border: !isSelected
                 ? Border(
