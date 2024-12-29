@@ -48,41 +48,47 @@ class DesktopLayout extends HookWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     if (searchFilter.isNotEmpty)
-                      Text.rich(
-                        TextSpan(
-                          text: 'Showing results for: ',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.w700,
-                            color: theme.onSurfaceVariant,
-                          ),
-                          children: [
-                            TextSpan(
-                              text: searchFilter,
-                              style: TextStyle(
-                                color: theme.onPrimary,
-                              ),
+                      Expanded(
+                        child: Text.rich(
+                          overflow: TextOverflow.ellipsis,
+                          TextSpan(
+                            text: 'Showing results for: ',
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w700,
+                              color: theme.onSurfaceVariant,
                             ),
-                          ],
+                            children: [
+                              TextSpan(
+                                text: searchFilter,
+                                style: TextStyle(
+                                  color: theme.onPrimary,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       )
                     else if (tag.isNotEmpty)
-                      Text.rich(
-                        TextSpan(
-                          text: 'Notes Tagged: ',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.w700,
-                            color: theme.onSurfaceVariant,
-                          ),
-                          children: [
-                            TextSpan(
-                              text: tag,
-                              style: TextStyle(
-                                color: theme.onPrimary,
-                              ),
+                      Expanded(
+                        child: Text.rich(
+                          overflow: TextOverflow.ellipsis,
+                          TextSpan(
+                            text: 'Notes Tagged: ',
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w700,
+                              color: theme.onSurfaceVariant,
                             ),
-                          ],
+                            children: [
+                              TextSpan(
+                                text: tag,
+                                style: TextStyle(
+                                  color: theme.onPrimary,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       )
                     else
@@ -92,6 +98,7 @@ class DesktopLayout extends HookWidget {
                         fontWeight: FontWeight.w700,
                         color: theme.onSurface,
                       ),
+                    XBox(20),
                     Row(
                       spacing: 20,
                       mainAxisSize: MainAxisSize.min,
