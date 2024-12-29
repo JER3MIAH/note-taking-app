@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:note_taking_app/src/features/home/presentation/components/components.dart';
+import 'package:note_taking_app/src/shared/shared.dart';
 
 class DesktopMainScreen extends StatelessWidget {
   const DesktopMainScreen({super.key});
@@ -6,7 +8,22 @@ class DesktopMainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Placeholder(),
+      body: Row(
+        children: [
+          DesktopSidebar(),
+          DesktopLayout(
+            topContent: Row(
+              children: [],
+            ),
+            sideContent: Column(
+              children: [],
+            ),
+            body: Column(
+              children: [],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
