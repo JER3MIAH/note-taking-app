@@ -18,60 +18,63 @@ class ColorThemeDesktopView extends HookWidget {
 
     return Padding(
       padding: const EdgeInsets.all(spacing300),
-      child: ConstrainedBox(
-        constraints: BoxConstraints(
-          maxWidth: 205,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            AppText(
-              'Color Theme',
-              fontSize: 24,
-              fontWeight: FontWeight.w700,
-              color: theme.onPrimary,
-            ),
-            YBox(5),
-            AppText(
-              'Choose your color theme:',
-              fontSize: 14,
-              color: theme.surfaceBright,
-            ),
-            YBox(20),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              spacing: 15,
-              children: List.generate(
-                AppTheme.values.length,
-                (index) {
-                  final item = AppTheme.values[index];
-                  return ColorThemeTile(
-                    appTheme: item,
-                    isSelected: item == selectedTheme.value,
-                    onTap: () {
-                      selectedTheme.value = item;
-                    },
-                  );
-                },
+      child: Align(
+        alignment: Alignment.topLeft,
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: 500,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AppText(
+                'Color Theme',
+                fontSize: 24,
+                fontWeight: FontWeight.w700,
+                color: theme.onPrimary,
               ),
-            ),
-            YBox(20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                AppButton(
-                  title: 'Apply changes',
-                  onTap: () {
-                    themeBloc.add(
-                      ChangeTheme(
-                        theme: selectedTheme.value,
-                      ),
+              YBox(5),
+              AppText(
+                'Choose your color theme:',
+                fontSize: 14,
+                color: theme.surfaceBright,
+              ),
+              YBox(20),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                spacing: 15,
+                children: List.generate(
+                  AppTheme.values.length,
+                  (index) {
+                    final item = AppTheme.values[index];
+                    return ColorThemeTile(
+                      appTheme: item,
+                      isSelected: item == selectedTheme.value,
+                      onTap: () {
+                        selectedTheme.value = item;
+                      },
                     );
                   },
                 ),
-              ],
-            ),
-          ],
+              ),
+              YBox(20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  AppButton(
+                    title: 'Apply changes',
+                    onTap: () {
+                      themeBloc.add(
+                        ChangeTheme(
+                          theme: selectedTheme.value,
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

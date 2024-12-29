@@ -18,60 +18,63 @@ class FontThemeDesktopView extends HookWidget {
 
     return Padding(
       padding: const EdgeInsets.all(spacing300),
-      child: ConstrainedBox(
-        constraints: BoxConstraints(
-          maxWidth: 385,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            AppText(
-              'Font Theme',
-              fontSize: 24,
-              fontWeight: FontWeight.w700,
-              color: theme.onPrimary,
-            ),
-            YBox(5),
-            AppText(
-              'Choose your font theme:',
-              fontSize: 14,
-              color: theme.surfaceBright,
-            ),
-            YBox(20),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              spacing: 15,
-              children: List.generate(
-                AppFont.values.length,
-                (index) {
-                  final item = AppFont.values[index];
-                  return FontThemeTile(
-                    appFont: item,
-                    isSelected: item == selectedFont.value,
-                    onTap: () {
-                      selectedFont.value = item;
-                    },
-                  );
-                },
+      child: Align(
+        alignment: Alignment.topLeft,
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: 500,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AppText(
+                'Font Theme',
+                fontSize: 24,
+                fontWeight: FontWeight.w700,
+                color: theme.onPrimary,
               ),
-            ),
-            YBox(20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                AppButton(
-                  title: 'Apply changes',
-                  onTap: () {
-                    fontBloc.add(
-                      ChangeFont(
-                        font: selectedFont.value,
-                      ),
+              YBox(5),
+              AppText(
+                'Choose your font theme:',
+                fontSize: 14,
+                color: theme.surfaceBright,
+              ),
+              YBox(20),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                spacing: 15,
+                children: List.generate(
+                  AppFont.values.length,
+                  (index) {
+                    final item = AppFont.values[index];
+                    return FontThemeTile(
+                      appFont: item,
+                      isSelected: item == selectedFont.value,
+                      onTap: () {
+                        selectedFont.value = item;
+                      },
                     );
                   },
                 ),
-              ],
-            ),
-          ],
+              ),
+              YBox(20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  AppButton(
+                    title: 'Apply changes',
+                    onTap: () {
+                      fontBloc.add(
+                        ChangeFont(
+                          font: selectedFont.value,
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
