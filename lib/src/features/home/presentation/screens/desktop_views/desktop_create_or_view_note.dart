@@ -8,7 +8,7 @@ import 'package:note_taking_app/src/features/home/presentation/components/compon
 import 'package:note_taking_app/src/shared/shared.dart';
 
 class DesktopCreateOrViewNote extends HookWidget {
-  final Note? note;
+  final Note note;
   const DesktopCreateOrViewNote({
     super.key,
     required this.note,
@@ -18,10 +18,9 @@ class DesktopCreateOrViewNote extends HookWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).colorScheme;
     final noteBloc = context.read<NoteBloc>();
-    final titleController = useTextEditingController(text: note?.title);
-    final tagsController =
-        useTextEditingController(text: note?.tags.join(', '));
-    final contentController = useTextEditingController(text: note?.note);
+    final titleController = useTextEditingController(text: note.title);
+    final tagsController = useTextEditingController(text: note.tags.join(', '));
+    final contentController = useTextEditingController(text: note.note);
 
     return Row(
       children: [
@@ -51,7 +50,7 @@ class DesktopCreateOrViewNote extends HookWidget {
                     ),
                   ],
                 ),
-                if (note != null && note!.isArchived)
+                if (note.isArchived)
                   Row(
                     children: [
                       IconText(
@@ -73,8 +72,8 @@ class DesktopCreateOrViewNote extends HookWidget {
                       title: 'Last edited',
                     ),
                     AppText(
-                      note != null
-                          ? formatDate(note!.createdAt, format: 'dd MMM yyyy')
+                      note.updatedAt != null
+                          ? formatDate(note.updatedAt, format: 'dd MMM yyyy')
                           : 'Not yet saved',
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
@@ -102,13 +101,26 @@ class DesktopCreateOrViewNote extends HookWidget {
                               AppButton(
                                 title: 'Save',
                                 bHeight: 41,
-                                onTap: () {},
+                                onTap: () {
+                                  noteBloc.add(
+                                    EditNote(
+                                      id: note.id,
+                                      title: titleController.text.trim(),
+                                      tags:
+                                          parseTags(tagsController.text.trim()),
+                                      note: contentController.text.trim(),
+                                    ),
+                                  );
+                                  AppSnackbar.show(context, title: noteSaved);
+                                },
                               ),
                               AppButton(
                                 title: 'Cancel',
                                 bHeight: 41,
                                 color: theme.primaryFixed,
-                                onTap: () {},
+                                onTap: () {
+                                  noteBloc.add(ResetSelectedNote());
+                                },
                               ),
                             ],
                           ),
@@ -129,54 +141,49 @@ class DesktopCreateOrViewNote extends HookWidget {
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(spacing200),
-            child: note != null
-                ? Column(
-                    spacing: 10,
-                    children: [
-                      AppOutlinedButton(
-                        title:
-                            note!.isArchived ? 'Restore Note' : 'Archive Note',
-                        icon: note!.isArchived ? iconRestore : iconArchive,
-                        onTap: () {
-                          if (note!.isArchived) {
-                            noteBloc.add(UnarchiveNote(id: note!.id));
-                            AppSnackbar.show(context, title: noteUnarchived);
-                          } else {
-                            AppDialog.dialog(
-                              context,
-                              ArchiveNoteDialog(
-                                note: note!,
-                                onArchive: () {
-                                  noteBloc.add(ArchiveNote(id: note!.id));
-                                  AppSnackbar.show(context,
-                                      title: noteArchived);
-                                },
-                              ),
-                            );
-                          }
-                        },
-                      ),
-                      AppOutlinedButton(
-                        title: 'Delete Note',
-                        icon: iconDelete,
-                        onTap: () {
-                          AppDialog.dialog(
-                            context,
-                            DeleteNoteDialog(
-                              note: note!,
-                              onDelete: () {
-                                noteBloc.add(DeleteNote(id: note!.id));
-                                AppSnackbar.show(context, title: noteDeleted);
-                              },
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  )
-                : SizedBox.shrink(),
-          ),
+              padding: const EdgeInsets.all(spacing200),
+              child: Column(
+                spacing: 10,
+                children: [
+                  AppOutlinedButton(
+                    title: note.isArchived ? 'Restore Note' : 'Archive Note',
+                    icon: note.isArchived ? iconRestore : iconArchive,
+                    onTap: () {
+                      if (note.isArchived) {
+                        noteBloc.add(UnarchiveNote(id: note.id));
+                        AppSnackbar.show(context, title: noteUnarchived);
+                      } else {
+                        AppDialog.dialog(
+                          context,
+                          ArchiveNoteDialog(
+                            note: note,
+                            onArchive: () {
+                              noteBloc.add(ArchiveNote(id: note.id));
+                              AppSnackbar.show(context, title: noteArchived);
+                            },
+                          ),
+                        );
+                      }
+                    },
+                  ),
+                  AppOutlinedButton(
+                    title: 'Delete Note',
+                    icon: iconDelete,
+                    onTap: () {
+                      AppDialog.dialog(
+                        context,
+                        DeleteNoteDialog(
+                          note: note,
+                          onDelete: () {
+                            noteBloc.add(DeleteNote(id: note.id));
+                            AppSnackbar.show(context, title: noteDeleted);
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              )),
         ),
       ],
     );

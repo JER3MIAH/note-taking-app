@@ -74,14 +74,14 @@ class NoteLocalService {
           return Note.fromJson(json);
         }).toList();
 
-        int index = existing.indexWhere((timer) => timer.id == updatedNote.id);
+        int index = existing.indexWhere((note) => note.id == updatedNote.id);
 
         if (index != -1) {
           existing[index] = updatedNote;
         }
 
         List<String> updatedJsonList =
-            existing.map((timer) => timer.toJson()).toList();
+            existing.map((note) => note.toJson()).toList();
         await prefs.setStringList('note_list', updatedJsonList);
       }
     } catch (e, stack) {

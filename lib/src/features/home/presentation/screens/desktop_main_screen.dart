@@ -73,7 +73,7 @@ class DesktopMainScreen extends HookWidget {
                             noteState.selectedNote == null
                                 ? Container()
                                 : DesktopCreateOrViewNote(
-                                    note: noteState.selectedNote,
+                                    note: noteState.selectedNote!,
                                   ),
                           SideBarItem.colorTheme => ColorThemeDesktopView(),
                           SideBarItem.fontTheme => FontThemeDesktopView(),
