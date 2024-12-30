@@ -166,8 +166,9 @@ class CreateOrViewNoteScreen extends HookWidget {
               ),
               AppText(
                 note != null
-                    ? formatDate((note!.updatedAt ?? note!.createdAt),
-                        format: 'dd MMM yyyy')
+                    ? formatDate(
+                        (note!.updatedAt ?? note!.createdAt),
+                      )
                     : 'Not yet saved',
                 fontSize: 14,
                 fontWeight: FontWeight.w400,

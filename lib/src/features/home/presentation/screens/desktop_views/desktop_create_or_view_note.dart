@@ -81,8 +81,7 @@ class DesktopCreateOrViewNote extends HookWidget {
                         ),
                         AppText(
                           note.updatedAt != null
-                              ? formatDate(note.updatedAt,
-                                  format: 'dd MMM yyyy')
+                              ? formatDate(note.updatedAt!)
                               : 'Not yet saved',
                           fontSize: 14,
                           fontWeight: FontWeight.w400,

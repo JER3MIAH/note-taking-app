@@ -72,7 +72,7 @@ class NoteTile extends StatelessWidget {
                 ),
                 YBox(10),
                 AppText(
-                  formatDate(note.createdAt, format: 'dd MMM yyyy'),
+                  formatDate(note.createdAt),
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
                   color: theme.surfaceBright,
