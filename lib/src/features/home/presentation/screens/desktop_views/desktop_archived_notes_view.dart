@@ -21,11 +21,7 @@ class DesktopArchivedNotesSideView extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AppButton(
-              title: '+ Create New Note',
-              expanded: true,
-              onTap: () {},
-            ),
+            DesktopCreateNewNoteButton(),
             YBox(5),
             AppText(
               'All your archived notes are stored here. You can restore or delete them anytime.',

@@ -18,11 +18,7 @@ class DesktopAllNotesSideView extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AppButton(
-              title: '+ Create New Note',
-              expanded: true,
-              onTap: () {},
-            ),
+            DesktopCreateNewNoteButton(),
             YBox(5),
             if (state.notes.isEmpty)
               EmptyStateContainer(

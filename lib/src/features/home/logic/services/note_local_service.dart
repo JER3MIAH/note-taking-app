@@ -32,7 +32,6 @@ class NoteLocalService {
     }
   }
 
-
   void changeSelectedNote(Note? note) async {
     try {
       if (note == null) {
@@ -54,7 +53,7 @@ class NoteLocalService {
           : [];
 
       if (!existing.any((b) => b.id == note.id)) {
-        existing.add(note);
+        existing = [note, ...existing];
       }
 
       List<String> updatedJsonList =

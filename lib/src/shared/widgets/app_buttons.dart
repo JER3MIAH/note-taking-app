@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:note_taking_app/src/features/home/logic/blocs/note_bloc/note_bloc.dart';
+import 'package:note_taking_app/src/features/home/logic/blocs/note_bloc/note_event.dart';
 import 'package:note_taking_app/src/shared/shared.dart';
 
 class AppButton extends StatelessWidget {
@@ -146,7 +149,6 @@ class AppOutlinedButton extends StatelessWidget {
         fontWeight: FontWeight.w500,
         color: theme.surfaceBright,
       ),
-  
     );
   }
 }
@@ -189,6 +191,40 @@ class TextBackButton extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class DesktopCreateNewNoteButton extends StatelessWidget {
+  const DesktopCreateNewNoteButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final noteBloc = context.read<NoteBloc>();
+    return AppButton(
+      title: '+ Create New Note',
+      expanded: true,
+      onTap: () {
+        if (noteBloc.state.notes.any((note) => note.title.isEmpty)) {
+          // TODO: show a toast
+          return;
+        }
+        noteBloc.add(
+          AddNote(
+            title: '',
+            tags: [],
+            note: '',
+          ),
+        );
+        Future.delayed(
+          Duration(milliseconds: 300),
+          () {
+            noteBloc.add(
+              SelectNote(id: noteBloc.state.notes.first.id),
+            );
+          },
+        );
+      },
     );
   }
 }

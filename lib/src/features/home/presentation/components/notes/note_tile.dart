@@ -24,6 +24,7 @@ class NoteTile extends StatelessWidget {
         child: Container(
           width: double.infinity,
           padding: EdgeInsets.all(spacing100),
+          margin: EdgeInsets.only(top: 5),
           decoration: BoxDecoration(
             color: isSelected ? theme.primaryFixed : null,
             borderRadius: isSelected ? BorderRadius.circular(spacing75) : null,
@@ -40,40 +41,43 @@ class NoteTile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AppText(
-                note.title,
+                note.title.isEmpty ? 'Untitled Note' : note.title,
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
               ),
-              YBox(10),
-              Wrap(
-                spacing: 4,
-                runSpacing: 4,
-                children: List.generate(
-                  note.tags.length,
-                  (index) {
-                    final tag = note.tags[index];
-                    return Container(
-                      padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                      decoration: BoxDecoration(
-                        color: theme.inversePrimary,
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: AppText(
-                        tag,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    );
-                  },
+              if (note.title.isNotEmpty) ...[
+                YBox(10),
+                Wrap(
+                  spacing: 4,
+                  runSpacing: 4,
+                  children: List.generate(
+                    note.tags.length,
+                    (index) {
+                      final tag = note.tags[index];
+                      return Container(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                        decoration: BoxDecoration(
+                          color: theme.inversePrimary,
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        child: AppText(
+                          tag,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      );
+                    },
+                  ),
                 ),
-              ),
-              YBox(10),
-              AppText(
-                formatDate(note.createdAt, format: 'dd MMM yyyy'),
-                fontSize: 12,
-                fontWeight: FontWeight.w400,
-                color: theme.surfaceBright,
-              ),
+                YBox(10),
+                AppText(
+                  formatDate(note.createdAt, format: 'dd MMM yyyy'),
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                  color: theme.surfaceBright,
+                ),
+              ],
             ],
           ),
         ),

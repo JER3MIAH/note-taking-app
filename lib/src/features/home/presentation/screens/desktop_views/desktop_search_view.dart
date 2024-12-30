@@ -20,11 +20,7 @@ class DesktopSearchSideView extends HookWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AppButton(
-              title: '+ Create New Note',
-              expanded: true,
-              onTap: () {},
-            ),
+            DesktopCreateNewNoteButton(),
             YBox(5),
             Text.rich(
               TextSpan(
