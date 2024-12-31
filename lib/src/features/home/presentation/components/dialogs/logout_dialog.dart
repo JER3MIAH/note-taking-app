@@ -77,9 +77,9 @@ class LogoutDialog extends StatelessWidget {
                 bHeight: 41,
                 title: 'Logout',
                 color: theme.error,
-                onTap: () async{
+                onTap: () async {
                   AppNavigator(context).popDialog();
-                 await AppNavigator(context).exitApp();
+                  await AppNavigator(context).exitApp();
                 },
               ),
             ],
