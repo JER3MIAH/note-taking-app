@@ -140,6 +140,7 @@ class DesktopLayout extends HookWidget {
                   children: [
                     Container(
                       width: 272,
+                      alignment: Alignment.topCenter,
                       padding: EdgeInsets.symmetric(
                         vertical: spacing250,
                         horizontal: spacing200,
