@@ -19,6 +19,14 @@ class DesktopCreateOrViewNote extends HookWidget {
     var tagsController = useTextEditingController(text: note?.tags.join(', '));
     var contentController = useTextEditingController(text: note?.note);
 
+    void showWarning(String title) {
+      AppSnackbar.show(
+        context,
+        title: title,
+        isWarning: true,
+      );
+    }
+
     return BlocBuilder<NoteBloc, NoteState>(
       builder: (_, noteState) {
         final note = noteState.selectedNote;
@@ -110,6 +118,20 @@ class DesktopCreateOrViewNote extends HookWidget {
                                     title: 'Save',
                                     bHeight: 41,
                                     onTap: () {
+                                      if (titleController.text.trim().isEmpty) {
+                                        showWarning(emptyTitle);
+                                        return;
+                                      }
+                                      if (tagsController.text.trim().isEmpty) {
+                                        showWarning(emptyTags);
+                                        return;
+                                      }
+                                      if (contentController.text
+                                          .trim()
+                                          .isEmpty) {
+                                        showWarning(emptyNoteContent);
+                                        return;
+                                      }
                                       noteBloc.add(
                                         EditNote(
                                           id: note.id,

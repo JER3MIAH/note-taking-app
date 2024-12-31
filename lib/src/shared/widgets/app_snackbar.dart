@@ -6,24 +6,29 @@ class AppSnackbar {
     BuildContext context, {
     required String title,
     Duration duration = const Duration(seconds: 4),
+    bool isWarning = false,
   }) {
     final theme = Theme.of(context).colorScheme;
 
     final snackBar = SnackBar(
-      width: 440,
+      width: DeviceType(context).isMobile ? null : 440,
       backgroundColor: theme.surfaceContainerHigh,
       behavior: SnackBarBehavior.floating,
       padding: EdgeInsets.all(spacing100),
+      margin: DeviceType(context).isMobile
+          ? EdgeInsets.symmetric(horizontal: 10)
+          : null,
       elevation: 4,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(spacing100),
-        side: BorderSide(color: theme.inversePrimary),
+        side: BorderSide(
+            color: isWarning ? appColors.red500 : theme.inversePrimary),
       ),
       content: Row(
         children: [
           SvgAsset(
-            iconCheckMark,
-            color: appColors.green500,
+            isWarning ? iconInfo : iconCheckMark,
+            color: isWarning ? appColors.red500 : appColors.green500,
           ),
           XBox(12),
           Expanded(
@@ -38,7 +43,7 @@ class AppSnackbar {
             onTap: () => ScaffoldMessenger.of(context).hideCurrentSnackBar(),
             child: SvgAsset(
               iconCross,
-              color: theme.onSurfaceVariant,
+              color: isWarning ? appColors.red500 : theme.onSurfaceVariant,
             ),
           ),
         ],

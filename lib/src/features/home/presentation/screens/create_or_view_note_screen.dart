@@ -23,6 +23,14 @@ class CreateOrViewNoteScreen extends HookWidget {
         useTextEditingController(text: note?.tags.join(', '));
     final contentController = useTextEditingController(text: note?.note);
 
+    void showWarning(String title) {
+      AppSnackbar.show(
+        context,
+        title: title,
+        isWarning: true,
+      );
+    }
+
     return AppScaffold(
       body: AppColumn(
         children: [
@@ -86,13 +94,15 @@ class CreateOrViewNoteScreen extends HookWidget {
                     color: theme.primary,
                     onTap: () {
                       if (titleController.text.trim().isEmpty) {
-                        //TODO: show toast
+                        showWarning(emptyTitle);
                         return;
                       }
                       if (tagsController.text.trim().isEmpty) {
+                        showWarning(emptyTags);
                         return;
                       }
                       if (contentController.text.trim().isEmpty) {
+                        showWarning(emptyNoteContent);
                         return;
                       }
                       if (note == null) {

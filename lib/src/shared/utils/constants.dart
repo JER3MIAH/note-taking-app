@@ -22,3 +22,6 @@ const settingUpdated = 'Settings updated successfully!';
 const passwordChanged = 'Password changed successfully!';
 const tagAdded = 'Tag added successfully!';
 const tagRemoved = 'Tag removed successfully!';
+const emptyTitle = 'Title cannot be empty.';
+const emptyTags = 'Enter at least one tag.';
+const emptyNoteContent = 'Note content cannot be empty';
