@@ -92,6 +92,7 @@ class PlainTextField extends StatelessWidget {
   final void Function(String)? onChanged;
   final void Function(String)? onSubmitted;
   final FocusNode? focusNode;
+  final int? hintMaxLines;
   final bool isHeader;
   final bool expands;
   final int? maxlines;
@@ -106,6 +107,7 @@ class PlainTextField extends StatelessWidget {
     this.onChanged,
     this.onSubmitted,
     this.focusNode,
+    this.hintMaxLines,
     this.isHeader = false,
     this.expands = false,
     this.maxlines,
@@ -136,7 +138,8 @@ class PlainTextField extends StatelessWidget {
           },
       decoration: InputDecoration(
         hintText: hintText,
-        hintMaxLines: controller.text.trim().isNotEmpty ? 1 : 3,
+        hintMaxLines:
+            hintMaxLines ?? (controller.text.trim().isNotEmpty ? 1 : 3),
         hintStyle: tStyle.copyWith(
           color: theme.onSurfaceVariant,
         ),

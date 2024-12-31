@@ -19,6 +19,8 @@ class DesktopCreateOrViewNote extends HookWidget {
     var tagsController = useTextEditingController(text: note?.tags.join(', '));
     var contentController = useTextEditingController(text: note?.note);
 
+    final tagHintMultiline = useState<bool>(false);
+
     void showWarning(String title) {
       AppSnackbar.show(
         context,
@@ -60,8 +62,16 @@ class DesktopCreateOrViewNote extends HookWidget {
                           child: PlainTextField(
                             controller: tagsController,
                             keyboardType: TextInputType.text,
+                            hintMaxLines: tagHintMultiline.value ? 1 : null,
                             hintText:
                                 'Add tags separated by commas (e.g. Work, Planning)',
+                            onChanged: (value) {
+                              if (value.isNotEmpty) {
+                                tagHintMultiline.value = true;
+                              } else {
+                                tagHintMultiline.value = false;
+                              }
+                            },
                           ),
                         ),
                       ],
