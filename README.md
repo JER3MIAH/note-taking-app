@@ -8,7 +8,7 @@ A **Note-taking App** built with Flutter, designed to help you capture and organ
 - [Features](#features)
 - [Download](#download)
 - [Design](#design)
-- [Licence](#license)
+- [License](#license)
 
 ## Preview
 
