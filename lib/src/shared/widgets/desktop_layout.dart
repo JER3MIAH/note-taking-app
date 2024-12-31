@@ -151,7 +151,10 @@ class DesktopLayout extends HookWidget {
                           ),
                         ),
                       ),
-                      child: sideContent,
+                      child: ScrollConfiguration(
+                        behavior: NoThumbScrollBehavior(),
+                        child: SingleChildScrollView(child: sideContent),
+                      ),
                     ),
                     Expanded(child: body),
                   ],

@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:note_taking_app/src/features/home/logic/blocs/note_bloc/note_bloc.dart';
 import 'package:note_taking_app/src/features/home/logic/blocs/note_bloc/note_event.dart';
 import 'package:note_taking_app/src/features/home/logic/blocs/note_bloc/note_state.dart';
+import 'package:note_taking_app/src/features/home/logic/cubits/tag_hint_multiline_cubit.dart';
 import 'package:note_taking_app/src/features/home/presentation/components/components.dart';
 import 'package:note_taking_app/src/shared/shared.dart';
 
@@ -18,8 +19,6 @@ class DesktopCreateOrViewNote extends HookWidget {
     var titleController = useTextEditingController(text: note?.title);
     var tagsController = useTextEditingController(text: note?.tags.join(', '));
     var contentController = useTextEditingController(text: note?.note);
-
-    final tagHintMultiline = useState<bool>(false);
 
     void showWarning(String title) {
       AppSnackbar.show(
@@ -58,19 +57,28 @@ class DesktopCreateOrViewNote extends HookWidget {
                           icon: iconTag,
                           title: 'Tags',
                         ),
-                        Expanded(
-                          child: PlainTextField(
-                            controller: tagsController,
-                            keyboardType: TextInputType.text,
-                            hintMaxLines: tagHintMultiline.value ? 1 : null,
-                            hintText:
-                                'Add tags separated by commas (e.g. Work, Planning)',
-                            onChanged: (value) {
-                              if (value.isNotEmpty) {
-                                tagHintMultiline.value = true;
-                              } else {
-                                tagHintMultiline.value = false;
-                              }
+                        BlocProvider(
+                          create: (context) => TagHintMultilineCubit(),
+                          child: BlocBuilder<TagHintMultilineCubit, bool>(
+                            builder: (context, tagHintMultiline) {
+                              final cubit =
+                                  context.read<TagHintMultilineCubit>();
+                              return Expanded(
+                                child: PlainTextField(
+                                  controller: tagsController,
+                                  keyboardType: TextInputType.text,
+                                  hintMaxLines: tagHintMultiline ? 1 : null,
+                                  hintText:
+                                      'Add tags separated by commas (e.g. Work, Planning)',
+                                  onChanged: (value) {
+                                    if (value.isNotEmpty) {
+                                      cubit.setValue(true);
+                                    } else {
+                                      cubit.setValue(false);
+                                    }
+                                  },
+                                ),
+                              );
                             },
                           ),
                         ),
@@ -112,9 +120,11 @@ class DesktopCreateOrViewNote extends HookWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          PlainTextField(
-                            controller: contentController,
-                            hintText: 'Start typing your note here…',
+                          Expanded(
+                            child: PlainTextField(
+                              controller: contentController,
+                              hintText: 'Start typing your note here…',
+                            ),
                           ),
                           Column(
                             mainAxisSize: MainAxisSize.min,
