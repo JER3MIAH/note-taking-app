@@ -20,26 +20,26 @@ A **Note-taking App** built with Flutter, designed to help you capture and organ
 - **Categorization**: Organize notes using customizable tags.
 - **Search Functionality**: Quickly find notes using the built-in search feature.
 - **Offline Access**: Access and edit notes without an internet connection.
-- **Cross-Platform**: Optimized for seamless use on both mobile and desktop devices. 
-- **Customizable Fonts**: Choose your preferred font for a personalized note-taking experience.  
-- **Theme Selection**: Switch between light, dark, or system themes to suit your preference.  
+- **Cross-Platform**: Optimized for seamless use on both mobile and desktop devices.
+- **Customizable Fonts**: Choose your preferred font for a personalized note-taking experience.
+- **Theme Selection**: Switch between light, dark, or system themes to suit your preference.
 
 ## Download
 
-Download the latest version of the app from the **[Releases Page](https://github.com/JER3MIAH/note_taking_app/releases)**.
+Download the latest version of the app from the **[Releases Page](https://github.com/JER3MIAH/note-taking-app/releases)**.
 
 ### Installation
 
 #### For Mobile (Android)
 
-1. Download the `.apk` file from the [latest release](https://github.com/JER3MIAH/note_taking_app/releases).
+1. Download the `.apk` file from the [latest release](https://github.com/JER3MIAH/note-taking-app/releases).
 2. Transfer the file to your Android device, or download it directly on your device.
 3. Open the file and follow the on-screen instructions to install the app.
    - Ensure that "Install from Unknown Sources" is enabled in your device settings.
 
 #### For Desktop (Windows)
 
-1. Download the `.exe` file from the [latest release](https://github.com/JER3MIAH/note_taking_app/releases).
+1. Download the `.exe` file from the [latest release](https://github.com/JER3MIAH/note-taking-app/releases).
 2. Run the installer and follow the setup instructions.
 3. Launch the app and start taking notes!
 
@@ -50,4 +50,3 @@ The app's design was inspired by concepts from [Frontend Mentor](https://www.fro
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
