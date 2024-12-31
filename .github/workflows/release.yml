@@ -1,0 +1,82 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  pull_request:
+    types: [closed]
+    branches:
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Check if tag exists
+        if: github.ref_type != 'tag'
+        run: |
+          echo "No tag found. Exiting..."
+          exit 1
+
+      - name: Set up Inno Setup
+        run: |
+          choco install innosetup -y
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.27.0"
+
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: 17
+          distribution: "temurin"
+
+      - name: Clear Flutter cache
+        run: flutter clean
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Decode keystore
+        run: |
+          [System.IO.File]::WriteAllBytes("android/app/keystore.jks", [Convert]::FromBase64String("${{ secrets.KEYSTORE_BASE64 }}"))
+
+      - name: Create key.properties
+        run: |
+          Set-Content -Path "android/key.properties" -Value "storePassword=${{ secrets.KEYSTORE_PASSWORD }}"
+          Add-Content -Path "android/key.properties" -Value "keyPassword=${{ secrets.KEY_PASSWORD }}"
+          Add-Content -Path "android/key.properties" -Value "keyAlias=${{ secrets.KEY_ALIAS }}"
+          Add-Content -Path "android/key.properties" -Value "storeFile=keystore.jks"
+
+      - name: Build APK
+        run: flutter build apk --release
+
+      - name: Build appBundle
+        run: flutter build appbundle
+
+      - name: Build windows
+        run: flutter build windows
+
+      - name: Run Inno Setup to create Windows installer
+        run: |
+          & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" "installers/desktop_inno_script.iss"
+
+      - name: Upload release APK and AppBundle
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            build/app/outputs/flutter-apk/app-release.apk
+            build/app/outputs/bundle/release/app-release.aab
+            installers/notes_setup.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
