@@ -54,6 +54,7 @@ class CreateOrViewNoteScreen extends HookWidget {
                             note: note!,
                             onDelete: () {
                               noteBloc.add(DeleteNote(id: note!.id));
+                              AppNavigator(context).popRoute();
                               AppSnackbar.show(context, title: noteDeleted);
                             },
                           ),
@@ -75,6 +76,7 @@ class CreateOrViewNoteScreen extends HookWidget {
                               note: note!,
                               onArchive: () {
                                 noteBloc.add(ArchiveNote(id: note!.id));
+                                AppNavigator(context).popRoute();
                                 AppSnackbar.show(context, title: noteArchived);
                               },
                             ),
