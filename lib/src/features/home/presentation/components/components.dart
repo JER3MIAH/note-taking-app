@@ -7,3 +7,4 @@ export 'notes/icon_text.dart';
 export 'dialogs/archive_note_dialog.dart';
 export 'dialogs/delete_note_dialog.dart';
 export 'side_bar/side_bar_tile.dart';
+export 'dialogs/logout_dialog.dart';

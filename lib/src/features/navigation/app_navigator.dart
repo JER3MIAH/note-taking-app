@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class AppNavigator {
   final BuildContext context;
@@ -35,6 +38,19 @@ class AppNavigator {
   void popDialog() {
     if (Navigator.of(context).canPop()) {
       Navigator.of(context).pop();
+    }
+  }
+
+  Future<void> exitApp({bool animated = true}) async {
+    if (Theme.of(context).platform == TargetPlatform.windows ||
+        Theme.of(context).platform == TargetPlatform.linux ||
+        Theme.of(context).platform == TargetPlatform.macOS) {
+      exit(0);
+    } else {
+      await SystemChannels.platform.invokeMethod<void>(
+        'SystemNavigator.pop',
+        animated,
+      );
     }
   }
 }

@@ -5,5 +5,4 @@ enum SideBarItem {
   search,
   colorTheme,
   fontTheme,
-  changePassword,
 }

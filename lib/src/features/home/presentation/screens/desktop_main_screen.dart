@@ -40,7 +40,6 @@ class DesktopMainScreen extends HookWidget {
                       SideBarItem.search => '',
                       SideBarItem.colorTheme => 'Settings',
                       SideBarItem.fontTheme => 'Settings',
-                      SideBarItem.changePassword => 'Settings',
                     },
                     tag: selectedItem == SideBarItem.tag &&
                             tagState.selectedTag != null
@@ -58,7 +57,6 @@ class DesktopMainScreen extends HookWidget {
                       SideBarItem.search => DesktopSearchSideView(),
                       SideBarItem.colorTheme => SettingsDesktopSideView(),
                       SideBarItem.fontTheme => SettingsDesktopSideView(),
-                      SideBarItem.changePassword => SettingsDesktopSideView(),
                     },
                     body: switch (selectedItem) {
                       SideBarItem.allNotes ||
@@ -68,7 +66,6 @@ class DesktopMainScreen extends HookWidget {
                         DesktopCreateOrViewNote(),
                       SideBarItem.colorTheme => ColorThemeDesktopView(),
                       SideBarItem.fontTheme => FontThemeDesktopView(),
-                      SideBarItem.changePassword => Container(),
                     },
                   );
                 },

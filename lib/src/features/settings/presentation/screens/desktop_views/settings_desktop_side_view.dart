@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_taking_app/src/features/home/data/data.dart';
 import 'package:note_taking_app/src/features/home/logic/cubits/side_bar_nav_cubit.dart';
+import 'package:note_taking_app/src/features/home/presentation/components/components.dart';
 import 'package:note_taking_app/src/features/settings/presentation/components/components.dart';
 import 'package:note_taking_app/src/shared/shared.dart';
 
@@ -34,14 +35,6 @@ class SettingsDesktopSideView extends StatelessWidget {
                 sideBarCubit.setSideBarItem(SideBarItem.fontTheme);
               },
             ),
-            SettingTile(
-              title: 'Change Password',
-              icon: iconLock,
-              isSelected: selectedItem == SideBarItem.changePassword,
-              onTap: () {
-                sideBarCubit.setSideBarItem(SideBarItem.changePassword);
-              },
-            ),
             Container(
               color: theme.inversePrimary,
               height: 1,
@@ -50,7 +43,7 @@ class SettingsDesktopSideView extends StatelessWidget {
               title: 'Logout',
               icon: iconLogout,
               onTap: () {
-                //TODO
+                AppDialog.dialog(context, LogoutDialog());
               },
             ),
           ],

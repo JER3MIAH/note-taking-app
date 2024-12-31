@@ -122,9 +122,7 @@ class DesktopLayout extends HookWidget {
                           height: 28,
                           onTap: () {
                             if (sideBarCubit.state != SideBarItem.colorTheme &&
-                                sideBarCubit.state != SideBarItem.fontTheme &&
-                                sideBarCubit.state !=
-                                    SideBarItem.changePassword) {
+                                sideBarCubit.state != SideBarItem.fontTheme) {
                               sideBarCubit
                                   .setSideBarItem(SideBarItem.colorTheme);
                               searchController.clear();

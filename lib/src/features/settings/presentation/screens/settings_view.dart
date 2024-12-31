@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note_taking_app/src/features/home/presentation/components/components.dart';
 import 'package:note_taking_app/src/features/settings/presentation/components/components.dart';
 import 'package:note_taking_app/src/shared/shared.dart';
 
@@ -36,13 +37,6 @@ class SettingsView extends StatelessWidget {
                 AppNavigator(context).pushNamed(SettingRoutes.fontTheme);
               },
             ),
-            SettingTile(
-              title: 'Change Password',
-              icon: iconLock,
-              onTap: () {
-                AppNavigator(context).pushNamed(SettingRoutes.changePassword);
-              },
-            ),
             Container(
               color: theme.inversePrimary,
               height: 1,
@@ -50,7 +44,9 @@ class SettingsView extends StatelessWidget {
             SettingTile(
               title: 'Logout',
               icon: iconLogout,
-              onTap: () {},
+              onTap: () {
+                AppDialog.dialog(context, LogoutDialog());
+              },
             ),
           ],
         ),
