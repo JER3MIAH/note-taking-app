@@ -5,6 +5,7 @@ import 'package:note_taking_app/src/features/home/logic/blocs/note_bloc/note_blo
 import 'package:note_taking_app/src/features/home/logic/blocs/note_bloc/note_event.dart';
 import 'package:note_taking_app/src/features/home/logic/blocs/note_bloc/note_state.dart';
 import 'package:note_taking_app/src/features/home/logic/cubits/cubits.dart';
+import 'package:note_taking_app/src/features/home/logic/utils/desktop_create_note.dart';
 import 'package:note_taking_app/src/features/home/presentation/components/components.dart';
 import 'package:note_taking_app/src/shared/shared.dart';
 
@@ -14,6 +15,7 @@ class DesktopSearchSideView extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).colorScheme;
+    final noteBloc = context.read<NoteBloc>();
 
     return BlocBuilder<SearchFilterCubit, String>(
       builder: (_, searchFilter) {
@@ -62,7 +64,10 @@ class DesktopSearchSideView extends HookWidget {
                     text:
                         'No notes match your search. Try a different keyword or ',
                     onCreateNewNote: () {
-                      //TODO:
+                      desktopCreateNewNote(
+                        noteBloc: noteBloc,
+                        context: context,
+                      );
                     },
                   );
                 }

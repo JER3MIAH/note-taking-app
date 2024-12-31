@@ -72,7 +72,10 @@ class SearchView extends HookWidget {
               return EmptyStateContainer(
                 text: 'No notes match your search. Try a different keyword or ',
                 onCreateNewNote: () {
-                  //TODO:
+                  AppNavigator(context).pushNamed(
+                    HomeRoutes.createOrViewNote,
+                    args: null,
+                  );
                 },
               );
             }

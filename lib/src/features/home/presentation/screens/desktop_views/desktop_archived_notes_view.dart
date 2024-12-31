@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_taking_app/src/features/home/logic/blocs/note_bloc/note_bloc.dart';
 import 'package:note_taking_app/src/features/home/logic/blocs/note_bloc/note_event.dart';
 import 'package:note_taking_app/src/features/home/logic/blocs/note_bloc/note_state.dart';
+import 'package:note_taking_app/src/features/home/logic/utils/utils.dart';
 import 'package:note_taking_app/src/features/home/presentation/components/components.dart';
 import 'package:note_taking_app/src/shared/shared.dart';
 
@@ -12,6 +13,7 @@ class DesktopArchivedNotesSideView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).colorScheme;
+    final noteBloc = context.read<NoteBloc>();
 
     return BlocBuilder<NoteBloc, NoteState>(
       builder: (_, state) {
@@ -35,7 +37,10 @@ class DesktopArchivedNotesSideView extends StatelessWidget {
                 text:
                     'No notes have been archived yet. Move notes here for safekeeping, or ',
                 onCreateNewNote: () {
-                  //TODO:
+                  desktopCreateNewNote(
+                    noteBloc: noteBloc,
+                    context: context,
+                  );
                 },
               )
             else

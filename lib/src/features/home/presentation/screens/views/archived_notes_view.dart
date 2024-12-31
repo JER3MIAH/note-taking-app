@@ -38,7 +38,10 @@ class ArchivedNotesView extends StatelessWidget {
                 text:
                     'No notes have been archived yet. Move notes here for safekeeping, or ',
                 onCreateNewNote: () {
-                  //TODO:
+                  AppNavigator(context).pushNamed(
+                    HomeRoutes.createOrViewNote,
+                    args: null,
+                  );
                 },
               )
             else
