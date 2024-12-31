@@ -1,6 +1,6 @@
 {
-    "name": "note_taking_app",
-    "short_name": "note_taking_app",
+    "name": "Notes",
+    "short_name": "Notes",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

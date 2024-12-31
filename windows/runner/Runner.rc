@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.github.jer3miah" "\0"
-            VALUE "FileDescription", "note_taking_app" "\0"
+            VALUE "FileDescription", "Notes" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "note_taking_app" "\0"
+            VALUE "InternalName", "Notes" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 com.github.jer3miah. All rights reserved." "\0"
-            VALUE "OriginalFilename", "note_taking_app.exe" "\0"
-            VALUE "ProductName", "note_taking_app" "\0"
+            VALUE "OriginalFilename", "Notes.exe" "\0"
+            VALUE "ProductName", "Notes" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

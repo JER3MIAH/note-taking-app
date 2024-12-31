@@ -1,0 +1,2 @@
+- Change app display name
+- Set up github actions workflow
